@@ -1,0 +1,14 @@
+﻿<Page x:Name="OpenFile" x:Class="app0.LoadPath"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:app0"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="500" Background="#FF82949F">
+    <DockPanel Margin="100">
+        <WrapPanel HorizontalAlignment="Center" DockPanel.Dock="Top" Margin="0,0,0,10">
+            <Button Name="openFile" Click="OpenFile_Click" FontSize="24">Open file</Button>
+        </WrapPanel>
+    </DockPanel>
+</Page>

@@ -23,8 +23,7 @@ namespace app0
     /// <summary>
     /// Interaction logic for ConnectServer.xaml
     /// </summary>
-    public class Model : IModel
-    {
+    public class Model : IModel{
         //private LoadPath load;
 
         // flight controls
@@ -36,6 +35,12 @@ namespace app0
         private float flaps;
         private float slats;
         private float speed_brake;
+        private float heading;
+        private float pitch;
+        private float yaw;
+        private float roll;
+        private float airSpeed;
+        private float altimeter;
 
         //engines
         private float throttle;
@@ -81,7 +86,6 @@ namespace app0
         private float magnetic_compass_indicated_heading_deg;
         private float slip_skid_ball_indicated_slip_skid;*/
 
-
         //volatile Boolean stop;
         int fileLine;
         int line_num;
@@ -118,11 +122,8 @@ namespace app0
             }
         }
 
-
-
         public void SaveFile(string fullPath)
         {
-
             var bufferr = new System.IO.StreamReader(fullPath);
             string line;
             while ((line = bufferr.ReadLine()) != null)
@@ -132,36 +133,138 @@ namespace app0
             fileLine = file.Capacity;
         }
 
-
-
-
-        public void Continue()
+        private void InitialProperties()
         {
+            String[] arrProperties = file[line_num].Split(',');
+            aileron = float.Parse(arrProperties[i]);
         }
 
-        public void Back()
+        public void NotifyPropertyChanged(String propName)
         {
+            if (this.PropertyChanged != null)
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
+            }
         }
 
         public float Aileron
         {
             get
             {
-                return this.aileron;
+                return aileron;
             }
             set
             {
-                this.aileron = value;
-
+                aileron = value;
+                NotifyPropertyChanged("Aileron");
             }
         }
 
-        public float Elevator { set; get; }
-        public float Rudder { set; get; }
-        public float Throttle { set; get; }
+        public float Elevator { 
+            set
+            {
+                elevator = value;
+                NotifyPropertyChanged("Elevator");
+            }
+            get
+            {
+                return elevator;
+            }
+        }
+        public float Rudder {
+            set
+            {
+                rudder = value;
+                NotifyPropertyChanged("Rudder");
+            }
+            get
+            {
+                return rudder;
+            }
+        }
+        public float Throttle {
+            set
+            {
+                throttle = value;
+                NotifyPropertyChanged("Throttle");
+            }
+            get
+            {
+                return throttle;
+            }
+        }
 
-        public float Line_num { set; get; }
-        public float Sleep { set; get; }
+        public float Altimeter
+        {
+            set
+            {
+                altimeter = value;
+                NotifyPropertyChanged("Altimeter");
+            }
+            get
+            {
+                return altimeter;
+            }
+        }
+        public float AirSpeed {
+            set
+            {
+                airSpeed = value;
+                NotifyPropertyChanged("AirSpeed");
+            }
+            get
+            {
+                return airSpeed;
+            }
+        }
+        public float Pitch
+        {
+            set
+            {
+                pitch = value;
+                NotifyPropertyChanged("Pitch");
+            }
+            get
+            {
+                return pitch;
+            }
+        }
+        public float Roll
+        {
+            set
+            {
+                roll = value;
+                NotifyPropertyChanged("Roll");
+            }
+            get
+            {
+                return roll;
+            }
+        }
+        public float Yaw
+        {
+            set
+            {
+                yaw = value;
+                NotifyPropertyChanged("Yaw");
+            }
+            get
+            {
+                return yaw;
+            }
+        }
+        public float Heading
+        {
+            set
+            {
+                heading = value;
+                NotifyPropertyChanged("Heading");
+            }
+            get
+            {
+                return heading;
+            }
+        }
 
         public string File_path
         {

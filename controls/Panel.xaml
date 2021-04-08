@@ -44,5 +44,6 @@
                 </TransformGroup>
             </Slider.RenderTransform>
         </Slider>
+        <TextBox x:Name="clock"  Height="20" TextWrapping="Wrap" Width="53" TextChanged="Clock_changed" Margin="350,-70,0,0" Text="{Binding VM_lineNum}"/>
     </WrapPanel>
 </UserControl>

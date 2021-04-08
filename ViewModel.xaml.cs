@@ -22,6 +22,7 @@ namespace app0
     public partial class ViewModel : INotifyPropertyChanged
     {
         private Model model;
+
         public ViewModel(Model m)
         {
             this.model = m;
@@ -39,7 +40,7 @@ namespace app0
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
         }
 
-        public double VM_Throttle
+        public float VM_Throttle
         {
             get
             {
@@ -51,7 +52,7 @@ namespace app0
             }
         }
 
-        public double VM_Rudder
+        public float VM_Rudder
         {
             get
             {
@@ -63,7 +64,7 @@ namespace app0
             }
         }
 
-        public double VM_Elevator
+        public float VM_Elevator
         {
             get
             {
@@ -75,7 +76,7 @@ namespace app0
             }
         }
 
-        public double VM_Ailrone
+        public float VM_Ailrone
         {
             get
             {
@@ -87,28 +88,35 @@ namespace app0
             }
         }
 
-        public void VM_ConnectFg(string path)
+        public float VM_Line_num
         {
-            model.ConnectFg(path);
-        }
-
-        public bool VM_Stop
-        {
+            get
+            {
+                return model.Line_num;
+            }
             set
             {
-                model.Stop = value;
+                model.Line_num = value;
             }
         }
 
-        /*public void VM_Start()
+        public float VM_Sleep
         {
-            model.Start();
+            get
+            {
+                return model.Sleep;
+            }
+            set
+            {
+                model.Sleep = value;
+            }
         }
 
-        public void VM_Stop()
+        public void VM_ConnectFg()
         {
-            model.Stop();
-        }*/
+            model.ConnectFg();
+        }
+
 
         public void VM_Continue()
         {
@@ -120,7 +128,17 @@ namespace app0
             model.Back();
         }
 
-
+        public string VM_File_path
+        {
+            get
+            {
+                return model.File_path;
+            }
+            set
+            {
+                model.File_path = value;
+            }
+        }
     }
 }
     

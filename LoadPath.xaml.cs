@@ -22,12 +22,15 @@ namespace app0
     public partial class LoadPath : Page
     {
         public string filePath;
-        
+        List<String> File;
+        int LineNum;
+
         Model model;
 
         public LoadPath()
         {
             InitializeComponent();
+            LineNum = 0;
         }
 
         private void OpenFile_Click(object sender, RoutedEventArgs e)
@@ -36,15 +39,14 @@ namespace app0
             if (openFileDialog.ShowDialog() == true)
             {
                 filePath = System.IO.Path.GetFullPath(openFileDialog.FileName);
-                model = new Model(getFilePath());
+                model = new Model();
+                //model = new Model(filePath);
             }
         }
 
-        public string getFilePath()
+        public string Filepath
         {
-            return filePath;
+            get { return filePath; }
         }
-
-
     }
 }

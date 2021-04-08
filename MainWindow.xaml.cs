@@ -26,14 +26,22 @@ namespace app0
     public partial class MainWindow : NavigationWindow
     {
         //LoadPath loadPath;
-        Panel panel;
+        View view;
+     
 
 
         public MainWindow()
         {
-            InitializeComponent();
+            
+            view = new View();
+           
+            Navigate(view);
+
+            //InitializeComponent();
             //loadPath = new LoadPath();
-            //Navigate(loadPath);
+
+
+            //Navigate(home);
             //panel = new Panel();
         }
 

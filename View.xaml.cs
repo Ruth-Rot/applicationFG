@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
+
 
 namespace app0
 {
@@ -20,12 +22,44 @@ namespace app0
     /// </summary>
     public partial class View : Page
     {
-        ViewModel vm;
+        private ViewModel vm;
+        private string filePath;
+       
+
         public View()
         {
             InitializeComponent();
-            vm = new ViewModel(new Model(""));
+
+        }
+
+        private void OpenFile_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                //NavigationService.Navigate(home);
+                this.filePath = System.IO.Path.GetFullPath(openFileDialog.FileName);
+
+                vm = new ViewModel(new Model());
+                vm.VM_File_path = filePath;
+                DataContext = vm;
+                
+
+                //vm = new ViewModel(new Model(filePath));
+                //DataContext = vm;
+            }
+        }
+
+        /*public void set_VM(ViewModel viewModel)
+        {
+            vm = viewModel;
             DataContext = vm;
+            vm.VM_File_path = filePath;
+        }*/
+
+        public string Filepath
+        {
+            get { return filePath; }
         }
     }
 }

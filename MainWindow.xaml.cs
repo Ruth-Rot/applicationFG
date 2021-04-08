@@ -48,7 +48,6 @@ namespace app0
         }
         private void OpenFile_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("hiii11");
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == true)
             {
@@ -60,7 +59,6 @@ namespace app0
         }
         private void OpenXML_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("hiii22");
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == true)
             {
@@ -71,7 +69,6 @@ namespace app0
         }
         private void start_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("hiii33");
             if (csv && xml)
             {
                 this.Hide();

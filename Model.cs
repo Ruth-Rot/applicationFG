@@ -141,7 +141,6 @@ namespace app0
         }
 
 
-
         public void SaveFile()
         {
             var bufferr = new System.IO.StreamReader(file_path);
@@ -162,18 +161,19 @@ namespace app0
         private void InitialProperties()
         {
             String[] arrProperties = file[current_line].Split(',');
-            aileron = float.Parse(arrProperties[xmlNames.IndexOf("aileron")]);
-            elevator = float.Parse(arrProperties[xmlNames.IndexOf("elevator")]);
-            rudder = float.Parse(arrProperties[xmlNames.IndexOf("rudder")]);
-            throttle = float.Parse(arrProperties[xmlNames.IndexOf("throttle")]);
+            Aileron = float.Parse(arrProperties[xmlNames.IndexOf("aileron")]);
+            Elevator = float.Parse(arrProperties[xmlNames.IndexOf("elevator")]);
+            Rudder = float.Parse(arrProperties[xmlNames.IndexOf("rudder")]);
+            Throttle = float.Parse(arrProperties[xmlNames.IndexOf("throttle")]);
         }
 
         public void NotifyPropertyChanged(String propName)
         {
-            if (this.PropertyChanged != null)
+           /* if (this.PropertyChanged != null)
             {
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
-            }
+            }*/
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
 
         public float Aileron

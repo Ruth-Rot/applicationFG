@@ -23,6 +23,7 @@ namespace app0
         public Joystick(ViewModel vm)
         {
             InitializeComponent();
+            DataContext = vm;
         }
 
     }

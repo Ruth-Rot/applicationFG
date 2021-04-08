@@ -9,15 +9,7 @@ namespace app0
 {
     interface IModel : INotifyPropertyChanged
     {
-        //void ConnectFg(string fullPath);
-        // void Start();
-        // void Stop();
-        /*void Continue();
-        void Back();
-        double Aileron { set; get; }
-        double Elevator { set; get; }
-        double Rudder { set; get; }
-        double Throttle { set; get; }*/
+        
         string File_path { set; get; }
 
         float Aileron { set; get; }
@@ -31,6 +23,12 @@ namespace app0
         float Roll { set; get; }
         float Yaw { set; get; }
         float Heading { set; get; }
+        Boolean Stop { set; get; }
+        float Sleep { set; get; }
+        int Current_line { set; get; }
+        int Num_of_lines { set; get; }
+        
+
 
     }
 }

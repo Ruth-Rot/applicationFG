@@ -15,7 +15,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using System.Xml.Linq;
+using System.Xml.Resolvers;
 
 
 namespace app0
@@ -23,11 +24,15 @@ namespace app0
     /// <summary>
     /// Interaction logic for ConnectServer.xaml
     /// </summary>
-    public class Model : IModel{
+    public class Model : IModel
+    {
         //private LoadPath load;
 
         // flight controls
         private string file_path;
+        private string xml_path;
+
+        private List<String> xmlNames;
 
         private float aileron;
         private float elevator;
@@ -87,19 +92,25 @@ namespace app0
         private float slip_skid_ball_indicated_slip_skid;*/
 
         //volatile Boolean stop;
-        int fileLine;
-        int line_num;
+       
         int timeWait;
         private List<string> file;
+        int current_line;
+        int num_of_lines;
+        Boolean stop;
+
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public Model()
+        public Model(String csv, String xml)
         {
-            file_path = "";
-            line_num = 0;
+            file_path = csv;
+            xml_path = xml;
+            stop = false;
+            current_line = 0;
             timeWait = 100;
             file = new List<string>(42);
-            SaveFile(file_path);
+            SaveFile();
+            SaveXml();
             ConnectFg();
         }
 
@@ -107,36 +118,54 @@ namespace app0
         {
             var client = new TcpClient("localhost", 5400);
             NetworkStream ns = client.GetStream();
-            // var file = new System.IO.StreamReader(@"C:\Users\משתמש1\Desktop\reg_flight.csv");
+           
             string line;
-            while (line_num != file.Capacity)
+            new Thread(delegate ()
             {
-                line = file[line_num] + "\r\n";
-                line_num++;
-                //add line to list
-                // change linenum
-                Console.WriteLine(line);
-                ns.Write(System.Text.Encoding.ASCII.GetBytes(line), 0, System.Text.Encoding.ASCII.GetBytes(line).Length);
-                ns.Flush();
-                Thread.Sleep(timeWait);
-            }
+                while (current_line != file.Capacity)
+                {
+                    line = file[current_line] + "\r\n";
+                    if (!stop)
+                    {
+                        current_line++;
+                    }
+                    //add line to list
+                    // change linenum
+                    Console.WriteLine(line);
+                    InitialProperties();
+                    ns.Write(System.Text.Encoding.ASCII.GetBytes(line), 0, System.Text.Encoding.ASCII.GetBytes(line).Length);
+                    ns.Flush();
+                    Thread.Sleep(timeWait);
+                }
+            }).Start();
         }
 
-        public void SaveFile(string fullPath)
+
+
+        public void SaveFile()
         {
-            var bufferr = new System.IO.StreamReader(fullPath);
+            var bufferr = new System.IO.StreamReader(file_path);
             string line;
             while ((line = bufferr.ReadLine()) != null)
             {
                 file.Add(line);
             }
-            fileLine = file.Capacity;
+            num_of_lines = file.Capacity;
+        }
+        public void SaveXml()
+        {
+            XDocument xml = XDocument.Load(xml_path);
+            IEnumerable<string> temp = xml.Descendants("output").Descendants("name").Select(name => (string)name);
+            xmlNames = temp.ToList();
         }
 
         private void InitialProperties()
         {
-            String[] arrProperties = file[line_num].Split(',');
-            aileron = float.Parse(arrProperties[i]);
+            String[] arrProperties = file[current_line].Split(',');
+            aileron = float.Parse(arrProperties[xmlNames.IndexOf("aileron")]);
+            elevator = float.Parse(arrProperties[xmlNames.IndexOf("elevator")]);
+            rudder = float.Parse(arrProperties[xmlNames.IndexOf("rudder")]);
+            throttle = float.Parse(arrProperties[xmlNames.IndexOf("throttle")]);
         }
 
         public void NotifyPropertyChanged(String propName)
@@ -151,7 +180,7 @@ namespace app0
         {
             get
             {
-                return aileron;
+                return aileron * 40 + 1;
             }
             set
             {
@@ -160,7 +189,8 @@ namespace app0
             }
         }
 
-        public float Elevator { 
+        public float Elevator
+        {
             set
             {
                 elevator = value;
@@ -168,10 +198,11 @@ namespace app0
             }
             get
             {
-                return elevator;
+                return elevator * 40 + 3;
             }
         }
-        public float Rudder {
+        public float Rudder
+        {
             set
             {
                 rudder = value;
@@ -179,10 +210,11 @@ namespace app0
             }
             get
             {
-                return rudder;
+                return rudder * 350 + 180;
             }
         }
-        public float Throttle {
+        public float Throttle
+        {
             set
             {
                 throttle = value;
@@ -190,7 +222,7 @@ namespace app0
             }
             get
             {
-                return throttle;
+                return throttle * 340 + 80;
             }
         }
 
@@ -206,7 +238,8 @@ namespace app0
                 return altimeter;
             }
         }
-        public float AirSpeed {
+        public float AirSpeed
+        {
             set
             {
                 airSpeed = value;
@@ -266,18 +299,11 @@ namespace app0
             }
         }
 
-        public string File_path
-        {
-            get
-            {
-                return this.file_path;
-            }
-            set
-            {
-                file_path = value;
-                NotifyPropertyChanged("File_path");
-            }
-        }
-
+        public int Current_line { set; get; }
+        public int Num_of_lines { set; get; }
+        public Boolean Stop { set; get; }
+        public float Sleep { set; get; }
+       public string File_path { set; get; }
+         
     }
 }

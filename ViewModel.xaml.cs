@@ -21,13 +21,13 @@ namespace app0
     /// </summary>
     public partial class ViewModel : INotifyPropertyChanged
     {
-        private Model model;
+        private IModel model;
 
         public ViewModel(Model m)
         {
             this.model = m;
             InitializeComponent();
-            model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e) 
+            model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
                 NotifyPropertyChanged("VM_" + e.PropertyName);
             };
@@ -76,27 +76,28 @@ namespace app0
             }
         }
 
-        public float VM_Ailrone
+
+        public int VM_Current_line
         {
             get
             {
-                return model.Aileron;
+                return model.Current_line;
             }
             set
             {
-                model.Aileron = value;
+                model.Current_line = value;
             }
         }
 
-        public float VM_Line_num
+        public int VM_Num_of_lines
         {
             get
             {
-                return model.Line_num;
+                return model.Num_of_lines;
             }
             set
             {
-                model.Line_num = value;
+                model.Num_of_lines = value;
             }
         }
 
@@ -112,22 +113,6 @@ namespace app0
             }
         }
 
-        public void VM_ConnectFg()
-        {
-            model.ConnectFg();
-        }
-
-
-        public void VM_Continue()
-        {
-            model.Continue();
-        }
-
-        public void VM_Back()
-        {
-            model.Back();
-        }
-
         public string VM_File_path
         {
             get
@@ -137,6 +122,69 @@ namespace app0
             set
             {
                 model.File_path = value;
+            }
+        }
+
+        public Boolean VM_Stop
+        {
+            get
+            {
+                return model.Stop;
+            }
+            set
+            {
+                model.Stop = value;
+            }
+        }
+    
+        public float VM_Ailrone
+        {
+            get
+            {
+                return model.Aileron;
+            }
+        }
+
+        public float VM_Altimeter
+        {
+            get
+            {
+                return model.Altimeter;
+            }
+        }
+        public float VM_AirSpeed
+        {
+            get
+            {
+                return model.AirSpeed;
+            }
+        }
+        public float VM_Pitch
+        {
+            get
+            {
+                return model.Pitch;
+            }
+        }
+        public float VM_Roll
+        {
+            get
+            {
+                return model.Roll;
+            }
+        }
+        public float VM_Yaw
+        {
+            get
+            {
+                return model.Yaw;
+            }
+        }
+        public float VM_Heading
+        {
+            get
+            {
+                return model.Heading;
             }
         }
     }

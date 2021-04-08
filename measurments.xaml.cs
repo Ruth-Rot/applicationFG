@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ass1
+namespace app0
 {
     /// <summary>
     /// Interaction logic for measurments.xaml
     /// </summary>
     public partial class measurments : UserControl
     {
-        public measurments()
+        public measurments(ViewModel vm)
         {
             InitializeComponent();
         }

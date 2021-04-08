@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ass1
+namespace app0
 {
     /// <summary>
     /// Interaction logic for Joystick.xaml
     /// </summary>
     public partial class Joystick : UserControl
     {
-        public Joystick()
+        public Joystick(ViewModel vm)
         {
             InitializeComponent();
         }

@@ -20,16 +20,25 @@ namespace app0
     /// <summary>
     /// Interaction logic for View.xaml
     /// </summary>
-    public partial class View : Page
+    public partial class View : Window
     {
         private ViewModel vm;
-        private string filePath;
-       
+        private String filePath;
+        private String xmlFile;
 
-        public View()
+
+        public View(String csv, String xml)
         {
             InitializeComponent();
-
+            filePath = csv;
+            xmlFile = xml;
+            ViewModel vm = new ViewModel(new Model(csv, xml));
+          //  UserControl1 u = new UserControl1(vm);
+            Joystick joy = new Joystick(vm);
+            measurments meas = new measurments(vm);
+         //   grd_panel.Children.Add(u);
+            joystick_panel.Children.Add(joy);
+            measurments_panel.Children.Add(meas);
         }
 
         private void OpenFile_Click(object sender, RoutedEventArgs e)
@@ -40,7 +49,7 @@ namespace app0
                 //NavigationService.Navigate(home);
                 this.filePath = System.IO.Path.GetFullPath(openFileDialog.FileName);
 
-                vm = new ViewModel(new Model());
+                vm = new ViewModel(new Model(filePath,xmlFile));
                 vm.VM_File_path = filePath;
                 DataContext = vm;
                 
@@ -50,13 +59,7 @@ namespace app0
             }
         }
 
-        /*public void set_VM(ViewModel viewModel)
-        {
-            vm = viewModel;
-            DataContext = vm;
-            vm.VM_File_path = filePath;
-        }*/
-
+     
         public string Filepath
         {
             get { return filePath; }

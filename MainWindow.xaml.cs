@@ -18,60 +18,72 @@ using Microsoft.Win32;
 
 
 
+
 namespace app0
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : NavigationWindow
+    public partial class MainWindow:Window
     {
-        //LoadPath loadPath;
-        View view;
-     
+        public String filePath;
+        public String fileXml;
+        private Boolean xml;
+        private Boolean csv;
 
 
+        //View view
+        //
         public MainWindow()
         {
-            
-            view = new View();
-           
-            Navigate(view);
+            Console.WriteLine("hiii");
+            InitializeComponent();
+            xml = false;
+            csv = false;
 
-            //InitializeComponent();
-            //loadPath = new LoadPath();
+            // view = new View();
+            //Navigate(view);
 
 
-            //Navigate(home);
-            //panel = new Panel();
         }
-
-
-        /* private void btnOpenFile_Click(object sender, RoutedEventArgs e)
-         {
-             OpenFileDialog openFileDialog = new OpenFileDialog();
-             if (openFileDialog.ShowDialog() == true)
-             {
-                 filePath = System.IO.Path.GetFullPath(openFileDialog.FileName);
-             }
-             //this.Close();
-         }*/
-
-
-        /*public void ConnectFg()
+        private void OpenFile_Click(object sender, RoutedEventArgs e)
         {
-
-            var client = new TcpClient("localhost", 5400);
-            NetworkStream ns = client.GetStream();
-            var file = new System.IO.StreamReader(@"C:\Users\noam\Desktop\reg_flight.csv");
-            string line;
-            while ((line = file.ReadLine()) != null)
+            Console.WriteLine("hiii11");
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
             {
-                line += "\r\n";
-                Console.WriteLine(line);
-                ns.Write(System.Text.Encoding.ASCII.GetBytes(line), 0, System.Text.Encoding.ASCII.GetBytes(line).Length);
-                ns.Flush();
-                Thread.Sleep(100);
+                filePath = System.IO.Path.GetFullPath(openFileDialog.FileName);
+                showCsv.Content = filePath;
+                csv = true;
+
             }
-        }*/
+        }
+        private void OpenXML_Click(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("hiii22");
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                fileXml = System.IO.Path.GetFullPath(openFileDialog.FileName);
+                showXml.Content = fileXml;
+                xml = true;
+            }
+        }
+        private void start_Click(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("hiii33");
+            if (csv && xml)
+            {
+                this.Hide();
+
+                View view = new View(filePath, fileXml);
+                view.ShowDialog();
+                this.Show();
+                
+            }
+
+        }
     }
 }
+
+

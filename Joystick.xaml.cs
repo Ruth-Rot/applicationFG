@@ -25,29 +25,40 @@ namespace ass1
             InitializeComponent();
         }
 
-        void Move(Double x,Double y)
+      /*  Boolean CheckDist(float x, float y)
         {
+            if (Math.Sqrt(Math.Pow(x - 1, 2)+ Math.Pow(y - 3, 2))<=40)
+            {
+                return true;
+            }
+            return false;
+        }*/
+        void change()
+        {
+            Move()
+        }
+        void MoveKnob(float x,float y)
+        {
+            float normalX = x * 40 + 1;
+            float normalY = y * 40 + 3;
+                knobPosition.Y = normalY ;
+                knobPosition.X = normalX;
 
+
+            //}
+        }
+        void MoveThrottle(float t)
+        {
+            float normalT = t * 340 + 80;
+            throttlePosition = normalT; //move zir y
+            //check if smaller then 420;
         }
 
-        void up()
+        void MoveRudder(float r)
         {
-            knobPosition.Y += 20;
-        }
-
-        void Down()
-        {
-            knobPosition.Y += 20;
-        }
-
-        void Left()
-        {
-            knobPosition.X += 20;
-        }
-
-        void Right()
-        {
-            knobPosition.X += 20;
+            float normalT = r * 350 + 180;
+            throttlePosition = normalT; //move zir x
+            //check if smaller than 530;
         }
 
     }

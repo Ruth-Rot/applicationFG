@@ -61,6 +61,9 @@
     <Compile Include="measurments.xaml.cs">
       <DependentUpon>measurments.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MediaBar.xaml.cs">
+      <DependentUpon>MediaBar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model.cs" />
     <Compile Include="UserControl1.xaml.cs">
       <DependentUpon>UserControl1.xaml</DependentUpon>
@@ -91,6 +94,10 @@
     <Page Include="measurments.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MediaBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControl1.xaml">
       <SubType>Designer</SubType>

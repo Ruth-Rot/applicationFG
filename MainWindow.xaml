@@ -18,7 +18,7 @@
             </Grid.Background>
             <Button x:Name="openFile" Click="OpenFile_Click"  Content="..." FontFamily="Arial Rounded MT Bold" FontSize="24" Height="37" Margin="464,95,-18,268" Background="#FF2E5E92" Foreground="#FFFCF8F8"/>
             <Button x:Name="getXml"  Click="OpenXML_Click" Content="..." FontFamily="Arial Rounded MT Bold" FontSize="24" Height="37" Margin="464,42,-18,321" Background="#FF2E5E92" Foreground="#FFFCF8F8"/>
-            <Button x:Name="start" Click="start_Click" Content="start" FontFamily="Arial Rounded MT Bold" FontSize="24" HorizontalAlignment="Left" Margin="410,304,0,0" VerticalAlignment="Top" Width="90" Height="50" RenderTransformOrigin="0.046,0.389"/>
+            <Button x:Name="start" Click="start_Click" Content="start" FontFamily="Arial Rounded MT Bold" FontSize="24" HorizontalAlignment="Left" Margin="410,322,0,0" VerticalAlignment="Top" Width="90" Height="50" RenderTransformOrigin="0.046,0.389"/>
             <Label x:Name="showCsv" Content="please upload a CSV file" FontFamily="Arial Rounded MT Bold" FontSize="24" HorizontalAlignment="Left" Height="36" Margin="-21,96,0,0" VerticalAlignment="Top" Width="439" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}"/>
             <Label  x:Name="showXml" Content="please upload an XML file" FontFamily="Arial Rounded MT Bold" FontSize="24" HorizontalAlignment="Left" Margin="-21,42,0,0"  Height="37"  Width="439" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" VerticalAlignment="Top"/>
 

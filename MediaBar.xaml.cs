@@ -19,19 +19,21 @@ namespace app0
     /// <summary>
     /// Interaction logic for UserControl1.xaml
     /// </summary>
-    public partial class UserControl1 : UserControl
+    public partial class MediaBar : UserControl
     {
-        
+
         ViewModel vm;
 
-        public UserControl1(ViewModel v)
+        public MediaBar(ViewModel v)
         {
             InitializeComponent();
-
-            this.vm = v; ;
+            this.vm = v;
             this.DataContext = vm;
+            clock.Text = "00:00:00";
+            Slider2.Value = 1.0;
+
         }
- 
+
 
 
 
@@ -41,7 +43,7 @@ namespace app0
 
         private void Slider2_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            vm.VM_Sleep = (int)(100 / (Slider2.Value));
+            vm.VM_Sleep = (int) (vm.VM_Sleep * Slider2.Value);
             speed.Text = Slider2.Value.ToString();
         }
 
@@ -95,14 +97,13 @@ namespace app0
 
         }
 
-
-
         private void Clock_changed(object sender, TextChangedEventArgs e)
         {
-           /* double time = 0.1 * vm.VM_Current_line;
-            string strTime = time.ToString();
-            DateTime dt = DateTime.ParseExact(strTime, "HHmm", CultureInfo.InvariantCulture);
-            string timestring = dt.ToString("H:mm:ss");*/
+            
+            /* double time = 0.1 * vm.VM_Current_line;
+             string strTime = time.ToString();
+             DateTime dt = DateTime.ParseExact(strTime, "HHmm", CultureInfo.InvariantCulture);
+             string timestring = dt.ToString("H:mm:ss");*/
         }
     }
 }

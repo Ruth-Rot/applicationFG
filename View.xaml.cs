@@ -33,10 +33,10 @@ namespace app0
             filePath = csv;
             xmlFile = xml;
             ViewModel vm = new ViewModel(new Model(csv, xml));
-          //  UserControl1 u = new UserControl1(vm);
+            MediaBar media = new MediaBar(vm);
             Joystick joy = new Joystick(vm);
             measurments meas = new measurments(vm);
-         //   grd_panel.Children.Add(u);
+            grd_panel.Children.Add(media);
             joystick_panel.Children.Add(joy);
             measurments_panel.Children.Add(meas);
         }

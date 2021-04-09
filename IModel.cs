@@ -24,7 +24,7 @@ namespace app0
         float Yaw { set; get; }
         float Heading { set; get; }
         Boolean Stop { set; get; }
-        float Sleep { set; get; }
+        int Sleep { set; get; }
         int Current_line { set; get; }
         int Num_of_lines { set; get; }
         

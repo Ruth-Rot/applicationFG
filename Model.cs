@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
@@ -92,7 +93,7 @@ namespace app0
         private float slip_skid_ball_indicated_slip_skid;*/
 
         //volatile Boolean stop;
-       
+
         int timeWait;
         private List<string> file;
         int current_line;
@@ -118,11 +119,12 @@ namespace app0
         {
             var client = new TcpClient("localhost", 5400);
             NetworkStream ns = client.GetStream();
-           
             string line;
+
+
             new Thread(delegate ()
             {
-                while (current_line != file.Capacity)
+                while (current_line != num_of_lines)
                 {
                     line = file[current_line] + "\r\n";
                     if (!stop)
@@ -132,7 +134,7 @@ namespace app0
                     //add line to list
                     // change linenum
                     Console.WriteLine(line);
-                    InitialProperties();
+                    //InitialProperties();
                     ns.Write(System.Text.Encoding.ASCII.GetBytes(line), 0, System.Text.Encoding.ASCII.GetBytes(line).Length);
                     ns.Flush();
                     Thread.Sleep(timeWait);
@@ -149,8 +151,10 @@ namespace app0
             {
                 file.Add(line);
             }
-            num_of_lines = file.Capacity;
+            var lineCount = File.ReadLines(file_path).Count();
+            num_of_lines = lineCount;
         }
+
         public void SaveXml()
         {
             XDocument xml = XDocument.Load(xml_path);
@@ -169,10 +173,10 @@ namespace app0
 
         public void NotifyPropertyChanged(String propName)
         {
-           /* if (this.PropertyChanged != null)
-            {
-                this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
-            }*/
+            /* if (this.PropertyChanged != null)
+             {
+                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
+             }*/
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
 
@@ -299,11 +303,57 @@ namespace app0
             }
         }
 
-        public int Current_line { set; get; }
-        public int Num_of_lines { set; get; }
-        public Boolean Stop { set; get; }
-        public float Sleep { set; get; }
-       public string File_path { set; get; }
-         
+        public int Current_line
+        {
+            get
+            {
+                return current_line;
+            }
+            set
+            {
+                current_line = value;
+                NotifyPropertyChanged("Current_line");
+            }
+        }
+        public int Num_of_lines
+        {
+            get
+            {
+                return num_of_lines;
+            }
+            set
+            {
+                num_of_lines = value;
+                NotifyPropertyChanged("Num_of_lines");
+            }
+        }
+        public Boolean Stop
+        {
+            get
+            {
+                return stop;
+            }
+            set
+            {
+                stop = value;
+                NotifyPropertyChanged("Stop");
+            }
+        }
+        public int Sleep
+        {
+            get
+            {
+                return timeWait;
+            }
+            set
+            {
+                timeWait = value;
+                NotifyPropertyChanged("Sleep");
+            }
+        }
+
+        public string File_path { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        //public string File_path { set; get; }
     }
+     
 }

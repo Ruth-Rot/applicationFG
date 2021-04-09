@@ -5,20 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:controls="clr-namespace:app0"
              xmlns:local="clr-namespace:app0"
-             mc:Ignorable="d" 
-             d:DesignHeight="800" Width="1000">
+             mc:Ignorable="d" Width="986.667" Height="719.667">
     <Window.Background>
         <ImageBrush/>
     </Window.Background>
-    <Grid x:Name="grd_panel"  Margin="13,588,38.333,9.667" Background="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="5*"/>
-            <ColumnDefinition Width="621*"/>
-            <ColumnDefinition Width="334*"/>
-        </Grid.ColumnDefinitions>
-        <Grid  x:Name="joystick_panel"  HorizontalAlignment="Left" Height="300" Margin="27.667,-335,0,0" VerticalAlignment="Top" Width="300" Background="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" Grid.Column="1"/>
-        <Grid x:Name="measurments_panel" HorizontalAlignment="Left" Height="200" Margin="28.667,-564,0,0" VerticalAlignment="Top" Width="300" Background="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" Grid.Column="1"/>
-
+    <Grid  Width="986.667" Height="719.667">
+        <Grid x:Name="joystick_panel" HorizontalAlignment="Left" Height="300" VerticalAlignment="Top" Width="300" Margin="35,273,0,0" Background="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}"/>
+        <Grid x:Name="measurments_panel" HorizontalAlignment="Left" Height="200" Margin="35,45,0,0" VerticalAlignment="Top" Width="300" Background="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}"/>
+        <Grid x:Name="grd_panel" Height="113.667" Width="502.333" Margin="355,513,71.667,96.667"  Background="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" RenderTransformOrigin="0.937,0.139"/>
     </Grid>
 
 

@@ -102,7 +102,7 @@ namespace app0
             }
         }
 
-        public float VM_Sleep
+        public int VM_Sleep
         {
             get
             {

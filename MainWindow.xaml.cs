@@ -36,7 +36,7 @@ namespace app0
         //
         public MainWindow()
         {
-            Console.WriteLine("hiii");
+            //Console.WriteLine("hiii");
             InitializeComponent();
             xml = false;
             csv = false;

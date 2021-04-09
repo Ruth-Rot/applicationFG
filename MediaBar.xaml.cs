@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace app0
 {
@@ -21,6 +22,9 @@ namespace app0
     /// </summary>
     public partial class MediaBar : UserControl
     {
+        DispatcherTimer d;
+        //DateTime startTime;
+
 
         ViewModel vm;
 
@@ -28,22 +32,57 @@ namespace app0
         {
             InitializeComponent();
             this.vm = v;
-            this.DataContext = vm;
-            clock.Text = "00:00:00";
             Slider2.Value = 1.0;
-
+            // d = new DispatcherTimer();
+            // d.Interval = TimeSpan.FromSeconds(0.1);
+            // d.Interval = new TimeSpan(0, 0, 1);
+            // d.Tick += d_Tick;
+            // d.Start();
+            // startTime = DateTime.Now;
+            this.DataContext = vm;
         }
 
+        //private int increment = 0;
 
+        /*private void d_Tick(object sender, EventArgs e)
+        {
+            if (vm.VM_Stop != true)
+                {
+                    ltime.Content = (DateTime.Now - startTime).ToString(); 
+                }
+                else
+                {
+                startTime.AddSeconds(60);
+                }
 
+            
+            
+            // Updating the Label which displays the current second
+            //ltime.Content = DateTime. .ToString("HH:mm:ss");
+            
+
+            //ltime.Content = increment.ToString();
+        }*/
 
         private void Slider1_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
+            
         }
 
         private void Slider2_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            vm.VM_Sleep = (int) (vm.VM_Sleep * Slider2.Value);
+            if((int) (100 / Slider2.Value) > 0)
+            {
+                if (vm.VM_Stop == true)
+                {
+                    vm.VM_Stop = false;
+                }
+                vm.VM_Sleep = (int)(100 / Slider2.Value);
+            }
+            else
+            {
+                vm.VM_Stop = true;
+            }
             speed.Text = Slider2.Value.ToString();
         }
 
@@ -55,7 +94,6 @@ namespace app0
         private void Stop_Click(object sender, RoutedEventArgs e)
         {
             vm.VM_Stop = true;
-
         }
 
         private void Go_Click(object sender, RoutedEventArgs e)
@@ -99,11 +137,29 @@ namespace app0
 
         private void Clock_changed(object sender, TextChangedEventArgs e)
         {
-            
-            /* double time = 0.1 * vm.VM_Current_line;
+            /*int time = (int) (vm.VM_Current_line / 10);
+            TimeSpan result = TimeSpan.FromSeconds(time);
+            string fromTimeString = result.ToString("hh':'mm ':'ss");
+            ltime.Content = fromTimeString;*/
+            /*double time = 0.1 * vm.VM_Current_line;
              string strTime = time.ToString();
+
+            
              DateTime dt = DateTime.ParseExact(strTime, "HHmm", CultureInfo.InvariantCulture);
-             string timestring = dt.ToString("H:mm:ss");*/
+             clock.Text = "H:mm:ss";*/
+        }
+
+        private void End_Click(object sender, RoutedEventArgs e)
+        {
+            vm.VM_Current_line = vm.VM_Num_of_lines;
+            double t = (vm.VM_Num_of_lines / 10);
+            vm.VM_TimePassed = TimeSpan.FromSeconds(t).ToString();
+        }
+
+        private void Restart_Click(object sender, RoutedEventArgs e)
+        {
+            vm.VM_Current_line = 0;
+            vm.VM_TimePassed = TimeSpan.FromSeconds(0).ToString();
         }
     }
 }

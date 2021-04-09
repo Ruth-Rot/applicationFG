@@ -39,6 +39,7 @@ namespace app0
             grd_panel.Children.Add(media);
             joystick_panel.Children.Add(joy);
             measurments_panel.Children.Add(meas);
+            DataContext = vm;
         }
 
         private void OpenFile_Click(object sender, RoutedEventArgs e)

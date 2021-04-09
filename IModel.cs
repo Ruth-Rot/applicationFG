@@ -27,6 +27,7 @@ namespace app0
         int Sleep { set; get; }
         int Current_line { set; get; }
         int Num_of_lines { set; get; }
+        string TimePassed { set; get; }
         
 
 

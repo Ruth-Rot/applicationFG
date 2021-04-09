@@ -114,17 +114,6 @@ namespace app0
             }
         }
 
-        public string VM_File_path
-        {
-            get
-            {
-                return model.File_path;
-            }
-            set
-            {
-                model.File_path = value;
-            }
-        }
 
         public Boolean VM_Stop
         {
@@ -137,7 +126,7 @@ namespace app0
                 model.Stop = value;
             }
         }
-    
+
         public float VM_Ailrone
         {
             get
@@ -188,6 +177,21 @@ namespace app0
                 return model.Heading;
             }
         }
+
+        public string VM_TimePassed
+        {
+            get
+            {
+                return model.TimePassed;
+            }
+            set
+            {
+                model.TimePassed = value;
+            }
+        }
+    
+
+        public string VM_File_path { get; internal set; }
     }
 }
     

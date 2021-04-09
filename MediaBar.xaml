@@ -10,12 +10,13 @@
             <RowDefinition Height="5*"/>
             <RowDefinition Height="14*"/>
         </Grid.RowDefinitions>
-
-        <Button x:Name="stop" Content="⏸" Click="Stop_Click" FontSize="15" Height="25" Width="25" Margin="163,20,313,39" RenderTransformOrigin="-0.46,-1.423" Grid.Row="1">
+        <Button x:Name="end" Content="⏹️" Click="End_Click" FontSize="15" Height="25" Width="25" Margin="189,20,287,39" RenderTransformOrigin="-0.46,-1.423" Grid.Row="1"/>
+        <Button x:Name="restart" Content="◀️" Click="Restart_Click" FontSize="15" Height="25" Width="25" Margin="95,20,381,39" RenderTransformOrigin="-0.46,-1.423" Grid.Row="1"/>
+        <Button x:Name="stop" Content="⏸" Click="Stop_Click" FontSize="15" Height="25" Width="25" Margin="157,20,319,39" RenderTransformOrigin="-0.46,-1.423" Grid.Row="1">
 
         </Button>
-        <TextBox x:Name="playSpeed" Text="Play Speed" Height="21" TextChanged="PlaySpeed_TextChanged" FontWeight="Bold" Width="68"  Margin="275,15,158,78" Grid.RowSpan="2"/>
-        <Button x:Name="play" Content="▶️" Click="Play_Click" FontSize="15" Height="25" Margin="129,20,347,39" Width="25" RenderTransformOrigin="-0.46,-1.423" Grid.Row="1">
+        <TextBox x:Name="playSpeed" IsReadOnly="True" Text="Play Speed" Height="21" TextChanged="PlaySpeed_TextChanged" FontWeight="Bold" Width="68"  Margin="275,15,158,78" Grid.RowSpan="2"/>
+        <Button x:Name="play" Content="▶️" Click="Play_Click" FontSize="15" Height="25" Margin="125,20,351,39" Width="25" RenderTransformOrigin="-0.46,-1.423" Grid.Row="1">
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -26,20 +27,18 @@
             </Button.RenderTransform>
 
         </Button>
-        <Slider TickPlacement="None" IsSnapToTickEnabled="True" x:Name="Slider2" Margin="355,15,49,77" Width="97" Height="22" ValueChanged="Slider2_ValueChanged"  RenderTransformOrigin="5.800,0.222" Maximum="3" TickFrequency="0.25" Grid.RowSpan="2">
+        <Slider TickPlacement="BottomRight" IsSnapToTickEnabled="True" x:Name="Slider2" Margin="355,15,49,77" Width="97" Height="22" ValueChanged="Slider2_ValueChanged"  RenderTransformOrigin="5.800,0.222" Maximum="3" TickFrequency="0.25" Grid.RowSpan="2">
             <Slider.Resources>
                 <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Black" />
                 <SolidColorBrush x:Key="{x:Static SystemColors.ControlDarkDarkBrushKey}" Color="Silver" />
             </Slider.Resources>
         </Slider>
-        <TextBox x:Name="speed" Height="25" TextChanged="Speed_TextChanged" FontWeight="Bold" FontFamily="Verdana" RenderTransformOrigin="0.99,0.08"  Margin="457,14,6,75" Text="1.0" Grid.RowSpan="2"/>
-        <Button x:Name="go" Content="⏭" Click="Go_Click" FontSize="15" Height="25" Width="25" Margin="199,20,277,39" RenderTransformOrigin="-0.46,-1.423" Grid.Row="1">
+        <TextBox x:Name="speed" IsReadOnly="True" Height="25" TextChanged="Speed_TextChanged" FontWeight="Bold" FontFamily="Verdana" RenderTransformOrigin="0.99,0.08"  Margin="457,14,6,75" Text="1.0" Grid.RowSpan="2"/>
+        <Button x:Name="go" Content="⏭" Click="Go_Click" FontSize="15" Height="25" Width="25" Margin="220,20,256,39" RenderTransformOrigin="-0.46,-1.423" Grid.Row="1">
 
         </Button>
-        <Button x:Name="back" Content="⏮" Click="Back_Click" FontSize="15" Height="25" Width="25" Margin="95,20,381,39" RenderTransformOrigin="-0.46,-1.423" Grid.Row="1">
-
-        </Button>
-        <Slider TickPlacement="None"  IsSnapToTickEnabled="False" x:Name="Slider1" Margin="4,58,4,6" ValueChanged="Slider1_ValueChanged" Height="20" RenderTransformOrigin="0.501,-1.974" IsMoveToPointEnabled="True" Value="{Binding VM_Current_line}" Maximum="{Binding VM_Num_of_lines}" Grid.Row="1">
+        <Button x:Name="back" Content="⏮" Click="Back_Click" FontSize="15" Height="25" Width="25" Margin="64,20,412,39" RenderTransformOrigin="-0.46,-1.423" Grid.Row="1"/>
+        <Slider TickPlacement="None" IsSnapToTickEnabled="False" x:Name="Slider1" Margin="4,55,4,9" ValueChanged="Slider1_ValueChanged" Height="20" RenderTransformOrigin="0.501,-1.974" IsMoveToPointEnabled="True" Value="{Binding VM_Current_line}" Maximum="{Binding VM_Num_of_lines}" Grid.Row="1">
             <Slider.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleY="-1"/>
@@ -49,6 +48,9 @@
                 </TransformGroup>
             </Slider.RenderTransform>
         </Slider>
-        <TextBox x:Name="clock" TextWrapping="Wrap" TextChanged="Clock_changed" Margin="24,10,381,74" FontSize="23" Grid.RowSpan="2"/>
+        <Grid>
+            <Label Name="ltime" FontSize="17" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Height="32" Margin="40,3,385.667,-5" Width="75" Content="{Binding VM_TimePassed}"/>
+        </Grid>
+
     </Grid>
 </UserControl>

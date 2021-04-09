@@ -32,6 +32,8 @@ namespace app0
         // flight controls
         private string file_path;
         private string xml_path;
+        private string time_passed;
+        private double time_in_num;
 
         private List<String> xmlNames;
 
@@ -99,6 +101,8 @@ namespace app0
         int current_line;
         int num_of_lines;
         Boolean stop;
+        
+        
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -109,6 +113,7 @@ namespace app0
             stop = false;
             current_line = 0;
             timeWait = 100;
+            time_in_num = 0;
             file = new List<string>(42);
             SaveFile();
             SaveXml();
@@ -121,7 +126,6 @@ namespace app0
             NetworkStream ns = client.GetStream();
             string line;
 
-
             new Thread(delegate ()
             {
                 while (current_line != num_of_lines)
@@ -130,6 +134,10 @@ namespace app0
                     if (!stop)
                     {
                         current_line++;
+                        NotifyPropertyChanged("Current_line");
+                        time_in_num = (current_line / 10);
+                        time_passed = TimeSpan.FromSeconds(time_in_num).ToString();
+                        NotifyPropertyChanged("TimePassed");
                     }
                     //add line to list
                     // change linenum
@@ -137,7 +145,7 @@ namespace app0
                     //InitialProperties();
                     ns.Write(System.Text.Encoding.ASCII.GetBytes(line), 0, System.Text.Encoding.ASCII.GetBytes(line).Length);
                     ns.Flush();
-                    Thread.Sleep(timeWait);
+                    Thread.Sleep(timeWait); 
                 }
             }).Start();
         }
@@ -173,7 +181,7 @@ namespace app0
 
         public void NotifyPropertyChanged(String propName)
         {
-            /* if (this.PropertyChanged != null)
+            /*if (this.PropertyChanged != null)
              {
                  this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
              }*/
@@ -353,6 +361,20 @@ namespace app0
         }
 
         public string File_path { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        
+        public string TimePassed
+        {
+            get
+            {
+                return time_passed;
+            }
+            set
+            {
+                time_passed = value;
+                NotifyPropertyChanged("TimePassed");
+            }
+        }
+
         //public string File_path { set; get; }
     }
      

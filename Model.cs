@@ -99,6 +99,7 @@ namespace app0
         int current_line;
         int num_of_lines;
         Boolean stop;
+        List<List<Point>> listOfPoints;
 
 
 
@@ -127,24 +128,24 @@ namespace app0
             new Thread(delegate ()
             {
                 line = file[current_line] + "\r\n";
-                while (current_line != num_of_lines+1)
+                while (current_line != (num_of_lines + 1))
                 {
-                    if (current_line != num_of_lines + 1)
+                    if (current_line != num_of_lines)
                     {
                         line = file[current_line] + "\r\n";
                     }
-                    if (!stop&&(current_line!=num_of_lines))
+                    if (!stop && (current_line != num_of_lines))
                     {
-                        current_line++;
                         InitialProperties();
-                        NotifyPropertyChanged("Current_line");
                         time_in_num = (current_line / 10);
                         time_passed = TimeSpan.FromSeconds(time_in_num).ToString();
                         NotifyPropertyChanged("TimePassed");
+                        current_line++;
+                        NotifyPropertyChanged("Current_line");
                     }
                     //add line to list
                     // change linenum
-                    Console.WriteLine(line);
+                    //Console.WriteLine(line);
                     //InitialProperties();
                     ns.Write(System.Text.Encoding.ASCII.GetBytes(line), 0, System.Text.Encoding.ASCII.GetBytes(line).Length);
                     ns.Flush();
@@ -166,11 +167,18 @@ namespace app0
             num_of_lines = lineCount;
         }
 
+        //public
+
         public void SaveXml()
         {
             XDocument xml = XDocument.Load(xml_path);
             IEnumerable<string> temp = xml.Descendants("output").Descendants("name").Select(name => (string)name);
             xmlNames = temp.ToList();
+            NotifyPropertyChanged("XmlNames");
+            /*for (int i = 0; i < 42; i++)
+            {
+                listOfPoints.Add(getListOfPoints(xmlNames[i]));
+            }*/
         }
 
         private void InitialProperties()
@@ -193,16 +201,31 @@ namespace app0
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
 
+        public List<Point> getListOfPoints(string proprety)
+        {
+            List<Point> l = new List<Point>(num_of_lines);
+            int i;
+            double y;
+            Point p;
+            for (i=0; i<num_of_lines; i++)
+            {
+                String[] arrProperties = file[i].Split(',');
+                y = float.Parse(arrProperties[xmlNames.IndexOf(proprety)]);
+                p = new Point(i, y);
+                l.Add(p);
+            }
+            return l;
+        }
+
         public float Aileron
         {
             get
             {
-                return aileron * 60 +50;
+                return aileron * 60 + 50;
             }
             set
             {
                 aileron = value;
-                Console.WriteLine(aileron+"\n");
                 NotifyPropertyChanged("Aileron");
             }
         }
@@ -216,7 +239,7 @@ namespace app0
             }
             get
             {
-                return elevator * 60+50 ;
+                return elevator * 60 + 50;
             }
         }
         public float Rudder
@@ -228,7 +251,7 @@ namespace app0
             }
             get
             {
-                return rudder * 200+20;
+                return rudder * 200 + 20;
             }
         }
         public float Throttle
@@ -240,7 +263,7 @@ namespace app0
             }
             get
             {
-                return throttle*200-20 ;
+                return throttle * 200 - 20;
             }
         }
 
@@ -296,7 +319,7 @@ namespace app0
         {
             set
             {
-                yaw = value- 0.5;
+                yaw = value;
                 NotifyPropertyChanged("Yaw");
             }
             get
@@ -380,8 +403,27 @@ namespace app0
                 NotifyPropertyChanged("TimePassed");
             }
         }
+        public List<String> XmlNames
+        {
+            get
+            {
+                return xmlNames;
+            }
+            set
+            {
+                xmlNames = value;
+                NotifyPropertyChanged("XmlNames");
+            }
+        }
 
-        //public string File_path { set; get; }
+        public class Point
+        {
+            double _x, _y;
+            public Point(double x, double y)
+            {
+                _x = x;
+                _y = y;
+            }
+        }
     }
-
 }

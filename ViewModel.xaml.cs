@@ -126,7 +126,7 @@ namespace app0
                 model.Stop = value;
             }
         }
-    
+
         public float VM_Ailrone
         {
             get
@@ -189,10 +189,14 @@ namespace app0
                 model.TimePassed = value;
             }
         }
-
+        public List<String> VM_XmlNames
+        {
+            get
+            {
+                return model.XmlNames;
+            }
+        }
 
         public string VM_File_path { get; internal set; }
     }
 }
-    
-

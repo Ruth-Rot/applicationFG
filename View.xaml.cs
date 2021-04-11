@@ -36,10 +36,14 @@ namespace app0
             MediaBar media = new MediaBar(vm);
             Joystick joy = new Joystick(vm);
             measurments meas = new measurments(vm);
+            Graph g = new Graph(vm);
             grd_panel.Children.Add(media);
             joystick_panel.Children.Add(joy);
             measurments_panel.Children.Add(meas);
+            graph_panel.Children.Add(g);
             DataContext = vm;
+
+
         }
 
         private void OpenFile_Click(object sender, RoutedEventArgs e)

@@ -24,8 +24,8 @@
             Background="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" />
         <Grid
             x:Name="measurments_panel"
-            Width="300"
-            Height="200"
+            Width="320"
+            Height="210"
             Margin="35,45,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
@@ -45,6 +45,7 @@
             Background="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}"
             RenderTransformOrigin="0.937,0.139" />
         <Grid
+            x:Name="graphs"
             Width="499"
             Height="236"
             Margin="387,235,0,0"

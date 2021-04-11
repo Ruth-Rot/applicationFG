@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OxyPlot;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
@@ -66,6 +67,9 @@ namespace app0
         private float longitude_deg;
         private float altitude_ft;
 
+        List<DataPoint> graphList;
+        String selection;
+
         //orientation
         /*private float roll_deg;
         private float pitch_deg;
@@ -99,8 +103,6 @@ namespace app0
         int current_line;
         int num_of_lines;
         Boolean stop;
-        List<List<Point>> listOfPoints;
-
 
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -128,20 +130,22 @@ namespace app0
             new Thread(delegate ()
             {
                 line = file[current_line] + "\r\n";
-                while (current_line != (num_of_lines + 1))
+                while (current_line != num_of_lines+1)
                 {
                     if (current_line != num_of_lines)
                     {
                         line = file[current_line] + "\r\n";
                     }
-                    if (!stop && (current_line != num_of_lines))
+                    if (!stop&&(current_line!=num_of_lines))
                     {
                         InitialProperties();
+                        NotifyPropertyChanged("Current_line");
                         time_in_num = (current_line / 10);
                         time_passed = TimeSpan.FromSeconds(time_in_num).ToString();
                         NotifyPropertyChanged("TimePassed");
                         current_line++;
                         NotifyPropertyChanged("Current_line");
+
                     }
                     //add line to list
                     // change linenum
@@ -167,18 +171,12 @@ namespace app0
             num_of_lines = lineCount;
         }
 
-        //public
-
         public void SaveXml()
         {
             XDocument xml = XDocument.Load(xml_path);
             IEnumerable<string> temp = xml.Descendants("output").Descendants("name").Select(name => (string)name);
             xmlNames = temp.ToList();
             NotifyPropertyChanged("XmlNames");
-            /*for (int i = 0; i < 42; i++)
-            {
-                listOfPoints.Add(getListOfPoints(xmlNames[i]));
-            }*/
         }
 
         private void InitialProperties()
@@ -194,6 +192,11 @@ namespace app0
             Pitch = float.Parse(arrProperties[xmlNames.IndexOf("pitch-deg")]);
             Yaw = float.Parse(arrProperties[xmlNames.IndexOf("side-slip-deg")]);
             Roll = float.Parse(arrProperties[xmlNames.IndexOf("roll-deg")]);
+
+            if (selection != null) {
+                GraphList = getListOfPoints(selection);
+            }
+
         }
 
         public void NotifyPropertyChanged(String propName)
@@ -201,32 +204,60 @@ namespace app0
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
 
-        public List<Point> getListOfPoints(string proprety)
+        public List<DataPoint> getListOfPoints(string proprety)
         {
-            List<Point> l = new List<Point>(num_of_lines);
-            int i;
+            List<DataPoint> l = new List<DataPoint>(num_of_lines);
+            double i;
             double y;
-            Point p;
-            for (i=0; i<num_of_lines; i++)
+            DataPoint p;
+            Console.WriteLine(proprety);
+            for (i = 0; i < current_line; i++)
             {
-                String[] arrProperties = file[i].Split(',');
+                String[] arrProperties = file[(int)i].Split(',');
                 y = float.Parse(arrProperties[xmlNames.IndexOf(proprety)]);
-                p = new Point(i, y);
+                p = new DataPoint(i, y);
                 l.Add(p);
             }
+           
             return l;
         }
+  
 
         public float Aileron
         {
             get
             {
-                return aileron * 60 + 50;
+                return aileron * 60 +50;
             }
             set
             {
                 aileron = value;
                 NotifyPropertyChanged("Aileron");
+            }
+        }
+        public List<DataPoint> GraphList
+        {
+            get
+            {
+                return graphList;
+            }
+            set
+            {
+                graphList = value;
+                NotifyPropertyChanged("GraphList");
+            }
+        }
+        public String Selection
+        {
+            set
+            {
+                selection = value;
+                GraphList = getListOfPoints(selection);
+                NotifyPropertyChanged("Selection");
+            }
+            get
+            {
+                return selection;
             }
         }
 
@@ -239,7 +270,7 @@ namespace app0
             }
             get
             {
-                return elevator * 60 + 50;
+                return elevator * 60+50 ;
             }
         }
         public float Rudder
@@ -251,7 +282,7 @@ namespace app0
             }
             get
             {
-                return rudder * 200 + 20;
+                return rudder * 200+20;
             }
         }
         public float Throttle
@@ -263,7 +294,7 @@ namespace app0
             }
             get
             {
-                return throttle * 200 - 20;
+                return throttle*200-20 ;
             }
         }
 
@@ -277,6 +308,19 @@ namespace app0
             get
             {
                 return altimeter;
+            }
+        }
+
+        public List<String> XmlNames
+        {
+            get
+            {
+                return xmlNames;
+            }
+            set
+            {
+                xmlNames = value;
+                NotifyPropertyChanged("XmlNames");
             }
         }
         public float AirSpeed
@@ -324,7 +368,7 @@ namespace app0
             }
             get
             {
-                return yaw;
+                return yaw +20;
             }
         }
         public float Heading
@@ -403,27 +447,10 @@ namespace app0
                 NotifyPropertyChanged("TimePassed");
             }
         }
-        public List<String> XmlNames
-        {
-            get
-            {
-                return xmlNames;
-            }
-            set
-            {
-                xmlNames = value;
-                NotifyPropertyChanged("XmlNames");
-            }
-        }
 
-        public class Point
-        {
-            double _x, _y;
-            public Point(double x, double y)
-            {
-                _x = x;
-                _y = y;
-            }
-        }
+      
+
+        //public string File_path { set; get; }
     }
+
 }

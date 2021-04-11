@@ -1,9 +1,12 @@
-﻿using System;
+﻿using OxyPlot;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using static app0.Model;
 
 namespace app0
 {
@@ -27,11 +30,13 @@ namespace app0
         int Sleep { set; get; }
         int Current_line { set; get; }
         int Num_of_lines { set; get; }
+
         string TimePassed { set; get; }
         List<String> XmlNames { get; set; }
+       
+        List<DataPoint> GraphList { get; set; }
 
-
-
+        String Selection { get; set; }
 
     }
 }

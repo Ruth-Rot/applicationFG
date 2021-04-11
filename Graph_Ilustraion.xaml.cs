@@ -20,9 +20,13 @@ namespace app0
     /// </summary>
     public partial class Graph_Ilustraion : UserControl
     {
-        public Graph_Ilustraion()
+        private ViewModel vm;
+
+        public Graph_Ilustraion(ViewModel vm)
         {
+            this.vm = vm;
             InitializeComponent();
+            DataContext = vm;
         }
     }
 }

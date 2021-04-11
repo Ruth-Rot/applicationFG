@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:app0"
              mc:Ignorable="d" 
   
-             d:DesignHeight="200" d:DesignWidth="320">
+             d:DesignHeight="210" d:DesignWidth="320">
     <Viewbox Height="200">
         <Grid>
 
@@ -14,33 +14,24 @@
                 <ColumnDefinition Width="0*"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Rectangle Fill="#FF292929" HorizontalAlignment="Left" Height="190" Margin="10,10,0,0" VerticalAlignment="Top" Width="190" Grid.ColumnSpan="2"/>
-            <Label x:Name="Altimeter" Content="{Binding VM_Altimeter}" Height="82" HorizontalAlignment="Left" FontFamily="Arial Rounded MT Bold" FontSize="70" VerticalAlignment="Top" Width="136" Margin="23,77,0,0" Background="{x:Null}" Foreground="#FF70E0E4" BorderBrush="{x:Null}" Grid.Column="1"/>
-            <TextBox HorizontalAlignment="Left" Height="62" TextWrapping="Wrap" Text="altimeter" FontFamily="Arial Rounded MT Bold" FontSize="28" VerticalAlignment="Top" Width="150" Margin="9,16,0,0" Background="{x:Null}" Foreground="#FFEAF2F2" BorderBrush="{x:Null}" TextChanged="TextBox_TextChanged" Grid.Column="1"/>
+            <Rectangle Fill="#FF292929" HorizontalAlignment="Left" Height="190" Margin="-12,10,0,0" VerticalAlignment="Top" Width="190" Grid.ColumnSpan="2"/>
+            <Label x:Name="Altimeter" Content="{Binding VM_Altimeter}" Height="82" HorizontalAlignment="Left" FontFamily="Arial Rounded MT Bold" FontSize="50" VerticalAlignment="Top" Width="174" Margin="-5,77,0,0" Background="{x:Null}" Foreground="#FF70E0E4" BorderBrush="{x:Null}" Grid.Column="1"/>
+            <TextBox HorizontalAlignment="Left" Height="62" TextWrapping="Wrap" Text="altimeter" FontFamily="Arial Rounded MT Bold" FontSize="28" VerticalAlignment="Top" Width="150" Margin="-13,16,0,0" Background="{x:Null}" Foreground="#FFEAF2F2" BorderBrush="{x:Null}" TextChanged="TextBox_TextChanged" Grid.Column="1"/>
             <Rectangle Fill="#FF292929" HorizontalAlignment="Left" Height="190" Margin="193,10,0,0" VerticalAlignment="Top" Width="190" Grid.Column="1"/>
-            <Label x:Name="AirSpeed" HorizontalAlignment="Left" Height="73" Content="{Binding VM_AirSpeed}" FontFamily="Arial Rounded MT Bold" FontSize="70" VerticalAlignment="Top" Width="140" Margin="217,77,0,0" Background="{x:Null}" Foreground="#FFE4D370" BorderBrush="{x:Null}" Grid.Column="1"/>
+            <Label x:Name="AirSpeed" HorizontalAlignment="Left" Height="73" Content="{Binding VM_AirSpeed}" FontFamily="Arial Rounded MT Bold" FontSize="50" VerticalAlignment="Top" Width="174" Margin="201,77,0,0" Background="{x:Null}" Foreground="#FFE4D370" BorderBrush="{x:Null}" Grid.Column="1"/>
             <TextBox HorizontalAlignment="Left" Height="62" TextWrapping="Wrap" Text="airspeed" FontFamily="Arial Rounded MT Bold" FontSize="28" VerticalAlignment="Top" Width="150" Margin="203,16,0,0" Background="{x:Null}" Foreground="#FFEAF2F2" BorderBrush="{x:Null}" TextChanged="TextBox_TextChanged" Grid.Column="1"/>
-            <Rectangle Fill="#FF292929" HorizontalAlignment="Left" Height="190" Margin="383,10,0,0" VerticalAlignment="Top" Width="190" Grid.Column="1"/>
-            <Label x:Name="Heading" Content="{Binding VM_Heading}" HorizontalAlignment="Left" Height="74" FontFamily="Arial Rounded MT Bold" FontSize="70" VerticalAlignment="Top" Width="138" Margin="417,77,0,0" Background="{x:Null}" Foreground="#FFE4A970" BorderBrush="{x:Null}" Grid.Column="1"/>
-            <Rectangle Fill="#FF292929" HorizontalAlignment="Left" Height="190" Margin="383,208,0,0" VerticalAlignment="Top" Width="190" Grid.Column="1"/>
+            <Rectangle Fill="#FF292929" HorizontalAlignment="Left" Height="190" Margin="402,10,-19.333,0" VerticalAlignment="Top" Width="190" Grid.Column="1"/>
+            <Label x:Name="Heading" Content="{Binding VM_Heading}" HorizontalAlignment="Left" Height="74" FontFamily="Arial Rounded MT Bold" FontSize="50" VerticalAlignment="Top" Width="173" Margin="411,77,-11.333,0" Background="{x:Null}" Foreground="#FFE4A970" BorderBrush="{x:Null}" Grid.Column="1"/>
+            <Rectangle Fill="#FF292929" HorizontalAlignment="Left" Height="190" Margin="402,208,-19.333,0" VerticalAlignment="Top" Width="190" Grid.Column="1"/>
             <Rectangle Fill="#FF292929" HorizontalAlignment="Left" Height="190" Margin="193,208,0,0" VerticalAlignment="Top" Width="190" Grid.Column="1"/>
-            <Rectangle Fill="#FF292929" HorizontalAlignment="Left" Height="190" Margin="10,208,0,0" VerticalAlignment="Top" Width="190" Grid.ColumnSpan="2"/>
-            <TextBox HorizontalAlignment="Left" Height="62" TextWrapping="Wrap" Text="pitch" FontFamily="Arial Rounded MT Bold" FontSize="28" VerticalAlignment="Top" Width="150" Margin="9,216,0,0" Background="{x:Null}" Foreground="#FFEAF2F2" BorderBrush="{x:Null}" TextChanged="TextBox_TextChanged" Grid.Column="1"/>
+            <Rectangle Fill="#FF292929" HorizontalAlignment="Left" Height="190" Margin="-13,208,0,0" VerticalAlignment="Top" Width="190" Grid.ColumnSpan="2"/>
+            <TextBox HorizontalAlignment="Left" Height="62" TextWrapping="Wrap" Text="pitch" FontFamily="Arial Rounded MT Bold" FontSize="28" VerticalAlignment="Top" Width="150" Margin="-14,216,0,0" Background="{x:Null}" Foreground="#FFEAF2F2" BorderBrush="{x:Null}" TextChanged="TextBox_TextChanged" Grid.Column="1"/>
             <TextBox HorizontalAlignment="Left" Height="62" TextWrapping="Wrap" Text="roll" FontFamily="Arial Rounded MT Bold" FontSize="28" VerticalAlignment="Top" Width="150" Margin="203,214,0,0" Background="{x:Null}" Foreground="#FFEAF2F2" BorderBrush="{x:Null}" TextChanged="TextBox_TextChanged" Grid.Column="1"/>
-            <TextBox HorizontalAlignment="Left" Height="62" TextWrapping="Wrap" Text="heading" FontFamily="Arial Rounded MT Bold" FontSize="28" VerticalAlignment="Top" Width="150" Margin="399,16,0,0" Background="{x:Null}" Foreground="#FFEAF2F2" BorderBrush="{x:Null}" TextChanged="TextBox_TextChanged" Grid.Column="1"/>
-            <TextBox HorizontalAlignment="Left" Height="62" TextWrapping="Wrap" Text="yaw" FontFamily="Arial Rounded MT Bold" FontSize="28" VerticalAlignment="Top" Width="150" Margin="399,214,0,0" Background="{x:Null}" Foreground="#FFEAF2F2" BorderBrush="{x:Null}" TextChanged="TextBox_TextChanged" Grid.Column="1"/>
-            <Ellipse HorizontalAlignment="Left" Height="140" Margin="416,247,0,0" VerticalAlignment="Top" Width="140" RenderTransformOrigin="0.5,0.5" Fill="#FFF5EFEF" Grid.Column="1">
-                <Ellipse.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="0.164"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Ellipse.RenderTransform>
-            </Ellipse>
+            <TextBox HorizontalAlignment="Left" Height="62" TextWrapping="Wrap" Text="heading" FontFamily="Arial Rounded MT Bold" FontSize="28" VerticalAlignment="Top" Width="150" Margin="418,16,0,0" Background="{x:Null}" Foreground="#FFEAF2F2" BorderBrush="{x:Null}" TextChanged="TextBox_TextChanged" Grid.Column="1"/>
+            <TextBox HorizontalAlignment="Left" Height="62" TextWrapping="Wrap" Text="yaw" FontFamily="Arial Rounded MT Bold" FontSize="28" VerticalAlignment="Top" Width="150" Margin="418,214,0,0" Background="{x:Null}" Foreground="#FFEAF2F2" BorderBrush="{x:Null}" TextChanged="TextBox_TextChanged" Grid.Column="1"/>
 
-            <Ellipse HorizontalAlignment="Left" Height="139" Margin="26,247,0,0" VerticalAlignment="Top" Width="140" RenderTransformOrigin="0.5,0.5" Grid.Column="1">
+
+            <Ellipse HorizontalAlignment="Left" Height="139" Margin="3,247,0,0" VerticalAlignment="Top" Width="140" RenderTransformOrigin="0.5,0.5" Grid.Column="1">
                 <Ellipse.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
@@ -76,12 +67,12 @@
                     <ImageBrush ImageSource="roll.jpg"/>
                 </Ellipse.Fill>
             </Ellipse>
-            <Ellipse HorizontalAlignment="Left" Height="140" Margin="417,244,0,0" VerticalAlignment="Top" Width="140" RenderTransformOrigin="0.5,0.5" Grid.Column="1">
+            <Ellipse HorizontalAlignment="Left" Height="140" Margin="425,247,0,0" VerticalAlignment="Top" Width="140" RenderTransformOrigin="0.5,0.5" Grid.Column="1">
                 <Ellipse.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
                         <SkewTransform/>
-                        <RotateTransform Angle="{Binding VM_Yaw}"/>
+                        <RotateTransform Angle="1"/>
                         <TranslateTransform/>
                     </TransformGroup>
                 </Ellipse.RenderTransform>

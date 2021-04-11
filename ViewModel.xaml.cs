@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OxyPlot;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -40,6 +41,28 @@ namespace app0
             //   this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
+        public List<DataPoint> VM_GraphList 
+        {
+            get
+            {
+                return model.GraphList;
+            }
+            set
+            {
+                model.GraphList = value;
+            }
+        }
+        public String VM_Selection
+        {
+            get
+            {
+                return model.Selection;
+            }
+            set
+            {
+                model.Selection = value;
+            }
+        }
 
         public float VM_Throttle
         {
@@ -74,6 +97,18 @@ namespace app0
             set
             {
                 model.Elevator = value;
+            }
+        }
+
+        public float VM_Aileron
+        {
+            get
+            {
+                return model.Aileron;
+            }
+            set
+            {
+                model.Aileron = value;
             }
         }
 
@@ -127,11 +162,11 @@ namespace app0
             }
         }
 
-        public float VM_Ailrone
+        public List<String> VM_XmlNames
         {
             get
             {
-                return model.Aileron;
+                return model.XmlNames;
             }
         }
 
@@ -189,14 +224,10 @@ namespace app0
                 model.TimePassed = value;
             }
         }
-        public List<String> VM_XmlNames
-        {
-            get
-            {
-                return model.XmlNames;
-            }
-        }
+
 
         public string VM_File_path { get; internal set; }
     }
 }
+    
+

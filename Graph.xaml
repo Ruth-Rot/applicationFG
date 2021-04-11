@@ -29,8 +29,8 @@
             Margin="-400,-53,135,-105"
             ItemsSource="{Binding VM_XmlNames}"
             RenderTransformOrigin="0.5,0.5"
-            SelectionChanged="Properties_SelectionChanged">
-            <ListBox.RenderTransform>
+            SelectionChanged="Properties_SelectionChanged" FontFamily="Arial Rounded MT Bold">
+            <ListBox.RenderTransform > 
                 <TransformGroup>
                     <ScaleTransform />
                     <SkewTransform />

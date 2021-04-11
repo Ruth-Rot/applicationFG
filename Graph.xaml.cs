@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using OxyPlot;
 
 namespace app0
 {
@@ -21,15 +22,21 @@ namespace app0
     public partial class Graph : UserControl
     {
         private ViewModel vm;
-        
 
-        public Graph(ViewModel v)
+
+        public Graph(ViewModel vm)
         {
-            vm = v;
+            this.vm = vm;
             InitializeComponent();
             DataContext = vm;
         }
 
-        private void Properties_SelectionChanged(object sender, SelectionChangedEventArgs e){}
+        private void Properties_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            Console.WriteLine("select click\n");
+            var item = (ListBox)sender;
+            var name = (String)item.SelectedItem;
+            Console.WriteLine(name);
+            vm.VM_Selection = name;            
+        }
     }
 }

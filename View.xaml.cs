@@ -37,13 +37,13 @@ namespace app0
             Joystick joy = new Joystick(vm);
             measurments meas = new measurments(vm);
             Graph g = new Graph(vm);
+            Graph_Ilustraion i = new Graph_Ilustraion(vm);
             grd_panel.Children.Add(media);
             joystick_panel.Children.Add(joy);
             measurments_panel.Children.Add(meas);
+            graphs.Children.Add(i);
             graph_panel.Children.Add(g);
             DataContext = vm;
-
-
         }
 
         private void OpenFile_Click(object sender, RoutedEventArgs e)

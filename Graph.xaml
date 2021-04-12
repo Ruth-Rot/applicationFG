@@ -27,10 +27,11 @@
             x:Name="Properties"
             Grid.RowSpan="2"
             Margin="-400,-53,135,-105"
+            FontFamily="Arial Rounded MT Bold"
             ItemsSource="{Binding VM_XmlNames}"
             RenderTransformOrigin="0.5,0.5"
-            SelectionChanged="Properties_SelectionChanged" FontFamily="Arial Rounded MT Bold">
-            <ListBox.RenderTransform > 
+            SelectionChanged="Properties_SelectionChanged">
+            <ListBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform />
                     <SkewTransform />

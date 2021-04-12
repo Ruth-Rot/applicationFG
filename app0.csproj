@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BB45E32A-C4E9-498C-AFCD-E182379B9B79}</ProjectGuid>
+    <ProjectGuid>{02E869A1-32E9-4243-9A10-893565CA92A6}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>app0</RootNamespace>
     <AssemblyName>app0</AssemblyName>
@@ -69,13 +69,16 @@
     <Compile Include="Graph_Ilustraion.xaml.cs">
       <DependentUpon>Graph_Ilustraion.xaml</DependentUpon>
     </Compile>
-    <Compile Include="IModel.cs" />
     <Compile Include="Joystick.xaml.cs">
       <DependentUpon>Joystick.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Timer.xaml.cs">
-      <DependentUpon>Timer.xaml</DependentUpon>
+    <Compile Include="measurments.xaml.cs">
+      <DependentUpon>measurments.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MediaBar.xaml.cs">
+      <DependentUpon>MediaBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model.cs" />
     <Compile Include="View.xaml.cs">
       <DependentUpon>View.xaml</DependentUpon>
     </Compile>
@@ -91,8 +94,8 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Joystick.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -102,6 +105,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="IModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -111,30 +115,19 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="MediaBar.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Timer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ViewModel.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="measurments.xaml.cs">
-      <DependentUpon>measurments.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MediaBar.xaml.cs">
-      <DependentUpon>MediaBar.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Model.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -162,20 +155,19 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="pic2.png" />
-    <Resource Include="pic3.png" />
-    <Resource Include="pic4.png" />
-    <Resource Include="pic5.png" />
-    <Resource Include="pitch.jpg" />
-    <Resource Include="plane.jpg" />
+    <Resource Include="airplane.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="roll.jpg" />
     <Resource Include="yaw.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="68283355-icon-of-plane-airplane-symbol-front-view-aircraft-vector-silhouette.jpg" />
-    <Resource Include="airplane.jpg" />
+    <Resource Include="roll.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="pitch.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Background.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

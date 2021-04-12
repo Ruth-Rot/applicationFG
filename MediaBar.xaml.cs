@@ -31,7 +31,7 @@ namespace app0
         public MediaBar(ViewModel v)
         {
             InitializeComponent();
-            this.vm = v;
+            vm = v;
             Slider2.Value = 1.0;
             // d = new DispatcherTimer();
             // d.Interval = TimeSpan.FromSeconds(0.1);
@@ -39,7 +39,7 @@ namespace app0
             // d.Tick += d_Tick;
             // d.Start();
             // startTime = DateTime.Now;
-            this.DataContext = vm;
+            DataContext = vm;
         }
 
         //private int increment = 0;
@@ -54,22 +54,24 @@ namespace app0
                 {
                 startTime.AddSeconds(60);
                 }
+
             
             
             // Updating the Label which displays the current second
             //ltime.Content = DateTime. .ToString("HH:mm:ss");
             
+
             //ltime.Content = increment.ToString();
         }*/
 
         private void Slider1_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-
+            
         }
 
         private void Slider2_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            if ((int)(100 / Slider2.Value) > 0)
+            if((int) (100 / Slider2.Value) > 0)
             {
                 if (vm.VM_Stop == true)
                 {
@@ -141,6 +143,7 @@ namespace app0
             ltime.Content = fromTimeString;*/
             /*double time = 0.1 * vm.VM_Current_line;
              string strTime = time.ToString();
+
             
              DateTime dt = DateTime.ParseExact(strTime, "HHmm", CultureInfo.InvariantCulture);
              clock.Text = "H:mm:ss";*/

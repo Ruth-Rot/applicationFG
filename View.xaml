@@ -11,7 +11,7 @@
     Height="719.667"
     mc:Ignorable="d">
     <Window.Background>
-        <ImageBrush />
+        <ImageBrush ImageSource="Background.jpg" />
     </Window.Background>
     <Grid Width="986.667" Height="719.667">
         <Grid

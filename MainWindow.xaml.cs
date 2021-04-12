@@ -24,19 +24,19 @@ namespace app0
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow:Window
     {
         public String filePath;
         public String fileXml;
         private Boolean xml;
         private Boolean csv;
 
-        
 
         //View view
         //
         public MainWindow()
         {
+            //Console.WriteLine("hiii");
             InitializeComponent();
             xml = false;
             csv = false;
@@ -76,9 +76,21 @@ namespace app0
                 View view = new View(filePath, fileXml);
                 view.ShowDialog();
                 this.Show();
-
+                
             }
+
+        }
+
+        private void Rutie_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void Noam_TextChanged(object sender, TextChangedEventArgs e)
+        {
 
         }
     }
 }
+
+

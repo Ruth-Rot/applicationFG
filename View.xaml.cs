@@ -54,17 +54,17 @@ namespace app0
                 //NavigationService.Navigate(home);
                 this.filePath = System.IO.Path.GetFullPath(openFileDialog.FileName);
 
-                vm = new ViewModel(new Model(filePath,xmlFile));
+                vm = new ViewModel(new Model(filePath, xmlFile));
                 vm.VM_File_path = filePath;
                 DataContext = vm;
-                
+
 
                 //vm = new ViewModel(new Model(filePath));
                 //DataContext = vm;
             }
         }
 
-     
+
         public string Filepath
         {
             get { return filePath; }

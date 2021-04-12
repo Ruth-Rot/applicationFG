@@ -12,7 +12,7 @@ namespace app0
 {
     interface IModel : INotifyPropertyChanged
     {
-        
+
         string File_path { set; get; }
 
         float Aileron { set; get; }
@@ -33,10 +33,15 @@ namespace app0
 
         string TimePassed { set; get; }
         List<String> XmlNames { get; set; }
-       
-        List<DataPoint> GraphList { get; set; }
 
-        String Selection { get; set; }
+        List<DataPoint> GraphList { get; set; }
+        List<DataPoint> Corre_points { get; set; }
+        List<DataPoint> Corre_list { get; set; }
+        string Selection { get; set; }
+        string Correlated_att { get; set; }
+        float A { get; set; }
+        float B { get; set; }
+
 
     }
 }

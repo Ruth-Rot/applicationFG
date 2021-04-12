@@ -41,7 +41,7 @@ namespace app0
             //   this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
-        public List<DataPoint> VM_GraphList 
+        public List<DataPoint> VM_GraphList
         {
             get
             {
@@ -225,9 +225,69 @@ namespace app0
             }
         }
 
+        public string VM_Correlated_att
+        {
+            get
+            {
+                return model.Correlated_att;
+            }
+            set
+            {
+                model.Correlated_att = value;
+            }
+        }
+
+        public List<DataPoint> VM_Corre_points
+        {
+            get
+            {
+                return model.Corre_points;
+            }
+            set
+            {
+                model.Corre_points = value;
+            }
+        }
+
+
+        public List<DataPoint> VM_Corre_list
+        {
+            get
+            {
+                return model.Corre_list;
+            }
+            set
+            {
+                model.Corre_list = value;
+            }
+        }
+
+        public float VM_A
+        {
+            get
+            {
+                return model.A;
+            }
+            set
+            {
+                model.A = value;
+            }
+        }
+
+        public float VM_B
+        {
+            get
+            {
+                return model.B;
+            }
+            set
+            {
+                model.B = value;
+            }
+        }
+
 
         public string VM_File_path { get; internal set; }
     }
 }
-    
 

@@ -31,12 +31,13 @@ namespace app0
             DataContext = vm;
         }
 
-        private void Properties_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+        private void Properties_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
             Console.WriteLine("select click\n");
             var item = (ListBox)sender;
             var name = (String)item.SelectedItem;
             Console.WriteLine(name);
-            vm.VM_Selection = name;            
+            vm.VM_Selection = name;
         }
     }
 }

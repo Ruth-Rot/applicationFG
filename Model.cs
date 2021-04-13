@@ -1,4 +1,4 @@
-﻿using OxyPlot;
+using OxyPlot;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,11 +6,8 @@ using System.IO;
 using System.Linq;
 using System.Net.Sockets;
 using System.Threading;
-using System.Windows.Shapes;
 using System.Xml.Linq;
-
-
-namespace app0
+namespace app00
 {
     /// <summary>
     /// Interaction logic for ConnectServer.xaml
@@ -18,52 +15,44 @@ namespace app0
     public class Model : IModel
     {
         //private LoadPath load;
-
         // flight controls
         private string file_path;
         private string xml_path;
         private string time_passed;
         private double time_in_num;
-
         private List<String> xmlNames;
-
         private float aileron;
         private float elevator;
         private float rudder;
-        private float flaps;
-        private float slats;
-        private float speed_brake;
+        //private float flaps;
+        //private float slats;
+        //private float speed_brake;
         private float heading;
         private float pitch;
         private float yaw;
         private float roll;
         private float airSpeed;
         private float altimeter;
-
         //engines
         private float throttle;
-
         //gear hydraulics
-        private float engine_pump;
-        private float electric_pump;
-
+        // private float engine_pump;
+        //private float electric_pump;
         //electric
-        private float external_power;
-        private float apu_generator;
-
+        //private float external_power;
+        //private float apu_generator;
         //autoflight position
-        private float latitude_deg;
-        private float longitude_deg;
-        private float altitude_ft;
-
-        List<DataPoint> graphList;
+        //private float latitude_deg;
+        //private float longitude_deg;
+        //private float altitude_ft;
+        List<DataPoint> graphList = new List<DataPoint>();
         String selection;
         String correlated_att;
-        Line linear_reg;
+        // Line linear_reg;
         List<DataPoint> corre_list = new List<DataPoint>();
-        float a;
-        float b;
-
+        private float a;
+        private float b;
+        private Dictionary<string, string> data;
         //orientation
         /*private float roll_deg;
         private float pitch_deg;
@@ -89,21 +78,19 @@ namespace app0
         private float indicated_heading_deg;
         private float magnetic_compass_indicated_heading_deg;
         private float slip_skid_ball_indicated_slip_skid;*/
-
         //volatile Boolean stop;
-
         int timeWait;
         private List<string> file;
         int current_line;
         int num_of_lines;
         Boolean stop;
-        List<DataPoint> corre_points;
-
+        List<DataPoint> corre_points = new List<DataPoint>();
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         public Model(String csv, String xml)
         {
+            data = new Dictionary<string, string>();
             file_path = csv;
             xml_path = xml;
             stop = false;
@@ -111,17 +98,19 @@ namespace app0
             timeWait = 100;
             time_in_num = 0;
             file = new List<string>(42);
-            SaveFile();
-            SaveXml();
+            new Thread(delegate ()
+            {
+                SaveFile();
+                SaveXml();
+                putInMap();
+            }).Start();
             ConnectFg();
         }
-
         public void ConnectFg()
         {
             var client = new TcpClient("localhost", 5400);
             NetworkStream ns = client.GetStream();
             string line;
-
             new Thread(delegate ()
             {
                 line = file[current_line] + "\r\n";
@@ -133,21 +122,16 @@ namespace app0
                     }
                     if (!stop && (current_line != num_of_lines))
                     {
-                        InitialProperties();
-                        time_in_num = (current_line / 10);
-                        time_passed = TimeSpan.FromSeconds(time_in_num).ToString();
-                        NotifyPropertyChanged("TimePassed");
-                        current_line++;
-                        NotifyPropertyChanged("Current_line");
-
+                            InitialProperties();
+                            time_in_num = (current_line / 10);
+                            time_passed = TimeSpan.FromSeconds(time_in_num).ToString();
+                            NotifyPropertyChanged("TimePassed");
+                            current_line++;
+                            NotifyPropertyChanged("Current_line");
                     }
-                    //add line to list
-                    // change linenum
-                    //Console.WriteLine(line);
-                    //InitialProperties();
-                    ns.Write(System.Text.Encoding.ASCII.GetBytes(line), 0, System.Text.Encoding.ASCII.GetBytes(line).Length);
-                    ns.Flush();
-                    Thread.Sleep(timeWait);
+                        ns.Write(System.Text.Encoding.ASCII.GetBytes(line), 0, System.Text.Encoding.ASCII.GetBytes(line).Length);
+                        ns.Flush();
+                        Thread.Sleep(timeWait);
                 }
             }).Start();
         }
@@ -185,14 +169,13 @@ namespace app0
             Pitch = float.Parse(arrProperties[xmlNames.IndexOf("pitch-deg")]);
             Yaw = float.Parse(arrProperties[xmlNames.IndexOf("side-slip-deg")]);
             Roll = float.Parse(arrProperties[xmlNames.IndexOf("roll-deg")]);
-
             if (selection != null)
             {
-                GraphList = getListOfPoints(selection);
-                Corre_points = getListOfPoints(findCorrelatedFeature());
-                getLinearReg(corre_list, corre_list.Count());
+                new Thread(delegate ()
+                {
+                    getListOfPoints();
+                }).Start();
             }
-
         }
 
         public void NotifyPropertyChanged(String propName)
@@ -200,140 +183,133 @@ namespace app0
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
 
-        public List<DataPoint> getListOfPoints(string proprety)
+        public void getListOfPoints()
         {
             List<DataPoint> l = new List<DataPoint>(num_of_lines);
-            double i;
+            List<DataPoint> l1 = new List<DataPoint>(num_of_lines);
+            int i;
             double y;
             DataPoint p;
+            double y1;
+            DataPoint p1;
             for (i = 0; i < current_line; i++)
             {
                 String[] arrProperties = file[(int)i].Split(',');
-                y = float.Parse(arrProperties[xmlNames.IndexOf(proprety)]);
+                y = float.Parse(arrProperties[xmlNames.IndexOf(selection)]);
                 p = new DataPoint(i, y);
                 l.Add(p);
+                y1 = float.Parse(arrProperties[xmlNames.IndexOf(correlated_att)]);
+                p1 = new DataPoint(i, y1);
+                l1.Add(p1);
             }
-
-            return l;
+            GraphList = l;
+            NotifyPropertyChanged("GraphList");
+            Corre_points = l1;
+            NotifyPropertyChanged("Corre_point");
         }
-
-
-        public string findCorrelatedFeature()
+        public string findCorrelatedFeature(string feature)
         {
             float maxResult = 0;
             string nameOfCorrelated = "";
             float pearsonResult;
-
-            float[] arr = new float[num_of_lines];
-            float[] brr = new float[num_of_lines];
-
+            float[] arr = new float[num_of_lines]; float[] brr = new float[num_of_lines];
             for (int j = 0; j < xmlNames.Count(); j++)
             {
                 string currentfeature = xmlNames[j];
-               
-                if (selection != currentfeature)
+                if (feature != currentfeature)
                 {
                     for (int i = 0; i < num_of_lines; i++)
                     {
                         String[] arrProperties = file[i].Split(',');
-                        arr[i] = float.Parse(arrProperties[xmlNames.IndexOf(selection)]);
+                        arr[i] = float.Parse(arrProperties[xmlNames.IndexOf(feature)]);
                         brr[i] = float.Parse(arrProperties[xmlNames.IndexOf(currentfeature)]);
                     }
-
-                  /*  for (int t = 0; t < num_of_lines; t++)
-                    {
-                        String[] arrProperties = file[t].Split(',');
-                        brr[t] = float.Parse(arrProperties[xmlNames.IndexOf(currentfeature)]);
-                    }*/
-
-                    pearsonResult = pearson(arr, brr, num_of_lines);
-
+                    pearsonResult = (float)(cov(arr, brr, num_of_lines) / (Math.Sqrt(var(arr, num_of_lines)) * Math.Sqrt(var(brr, num_of_lines))));
                     if (Math.Abs(pearsonResult) >= Math.Abs(maxResult)
                         || j == 0)
                     {
                         maxResult = pearsonResult;
                         nameOfCorrelated = currentfeature;
-                        
-                        for (int t = 0; t < num_of_lines; t++)
-                        {
-                            String[] arrProperties = file[t].Split(',');
-                            brr[t] = float.Parse(arrProperties[xmlNames.IndexOf(currentfeature)]);
-                            corre_list.Add(new DataPoint(arr[t], brr[t]));
-                        }
                     }
                 }
             }
-            correlated_att = nameOfCorrelated;
-            NotifyPropertyChanged("Correlated_att");
-            NotifyPropertyChanged("Corre_list");
-            // NotifyPropertyChanged("Corre_points");
-            Console.WriteLine(corre_list);
             return nameOfCorrelated;
         }
 
-        // returns the Pearson correlation coefficient of X and Y
-        float pearson(float[] x, float[] y, int size)
+        public void putInMap()
         {
-            return (float)(cov(x, y, size) / (Math.Sqrt(var(x, size)) * Math.Sqrt(var(y, size))));
+            string nameOfCorrelated;
+            for (int i = 0; i < xmlNames.Count(); i++)
+            {
+                nameOfCorrelated = findCorrelatedFeature(xmlNames[i]);
+                if (!data.ContainsKey(xmlNames[i]))
+                {
+                    data.Add(xmlNames[i], nameOfCorrelated);
+                }
+            }
         }
 
-        float avg(float[] x, int size)
+        public void getArrays()
         {
-            float sum = 0;
-            for (int i = 0; i < size; sum += x[i], i++) ;
-            return sum / size;
+            corre_list.Clear();
+            float sum1 = 0;
+            float sum2 = 0;
+            float sumCov = 0;
+            float sumVar = 0;
+            //sleep/10 is the number of lines in a second
+            int k = xmlNames.IndexOf(selection);
+            int j = xmlNames.IndexOf(correlated_att);
+            float n, m;
+
+            for (int t = Sleep / 10 * 30; t > 0; t--)
+            {
+                String[] arrProperties = file[num_of_lines - t].Split(',');
+                n = float.Parse(arrProperties[k]);
+                m = float.Parse(arrProperties[j]);
+                corre_list.Add(new DataPoint(n, m));
+                sum1 += n;
+                sum2 += m;
+                sumCov += n * m;
+                sumVar += n * n;
+            }
+            NotifyPropertyChanged("Corre_list");
+            sumCov /= (Sleep / 10 * 30);
+            float x1 = sum1 / (Sleep / 10 * 30);
+            float y1 = sum2 / (Sleep / 10 * 30);
+            A = (sumCov - x1 * y1) / (sumVar / (Sleep / 10 * 30) - x1 * x1);
+            B = y1 - (a * x1);
         }
 
-        // returns the variance of X and Y
-        float var(float[] x, int size)
+        public float var(float[] x, int size)
         {
-            float av = avg(x, size);
+            float result = 0;
+            float av;
             float sum = 0;
             for (int i = 0; i < size; i++)
             {
                 sum += x[i] * x[i];
+                result += x[i];
             }
+            av = result / size;
             return sum / size - av * av;
         }
-
         // returns the covariance of X and Y
-        float cov(float[] x, float[] y, int size)
+        public float cov(float[] x, float[] y, int size)
         {
             float sum = 0;
+            float sum1 = 0;
+            float sum2 = 0;
             for (int i = 0; i < size; i++)
             {
-                sum += x[i] * y[i];
+                sum += x[i] * y[i]; sum1 += x[i];
+                sum2 += y[i];
             }
             sum /= size;
-
-            return sum - avg(x, size) * avg(y, size);
+            float x1 = sum1 / size;
+            float y1 = sum2 / size;
+            return sum - x1 * y1;
         }
-
-        public void getLinearReg(List<DataPoint> points, int size)
-        {
-            float[] x = new float[size];
-            float[] y = new float[size];
-            for (int i = 0; i < size; i++)
-            {
-                x[i] = (float)points[i].X;
-                y[i] = (float)points[i].Y;
-            }
-            a = cov(x, y, size) / var(x, size);
-            b = avg(y, size) - (a * (avg(x, size)));
-            NotifyPropertyChanged("A");
-            NotifyPropertyChanged("B");
-
-            /*Line l = new Line();
-
-            Console.WriteLine(a);
-            Console.WriteLine(b);
-            l.X1 = 0;
-            l.Y1 = b;
-            l.X2 = 1;
-            l.Y2 = a + b;
-            linear_reg = l;*/
-        }
-
+        
         public float Aileron
         {
             get
@@ -346,7 +322,6 @@ namespace app0
                 NotifyPropertyChanged("Aileron");
             }
         }
-
         public List<DataPoint> GraphList
         {
             get
@@ -365,15 +340,15 @@ namespace app0
             {
                 selection = value;
                 NotifyPropertyChanged("Selection");
-                GraphList = getListOfPoints(selection);
-                Corre_points = getListOfPoints(findCorrelatedFeature());
+                correlated_att = data.FirstOrDefault(x => x.Key == selection).Value;
+                NotifyPropertyChanged("Correlated_att");
+                getArrays();
             }
             get
             {
                 return selection;
             }
         }
-
         public float Elevator
         {
             set
@@ -410,7 +385,6 @@ namespace app0
                 return throttle * 200 - 20;
             }
         }
-
         public float Altimeter
         {
             set
@@ -423,7 +397,6 @@ namespace app0
                 return altimeter;
             }
         }
-
         public List<String> XmlNames
         {
             get
@@ -496,7 +469,6 @@ namespace app0
                 return heading;
             }
         }
-
         public int Current_line
         {
             get
@@ -545,9 +517,7 @@ namespace app0
                 NotifyPropertyChanged("Sleep");
             }
         }
-
         public string File_path { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
         public string TimePassed
         {
             get
@@ -558,11 +528,10 @@ namespace app0
             {
                 time_passed = value;
                 NotifyPropertyChanged("TimePassed");
-               
             }
         }
-
-        public string Correlated_att { 
+        public string Correlated_att
+        {
             get
             {
                 return correlated_att;
@@ -571,10 +540,8 @@ namespace app0
             {
                 correlated_att = value;
                 NotifyPropertyChanged("Correlated_att");
-
             }
         }
-
         public List<DataPoint> Corre_points
         {
             get
@@ -587,8 +554,8 @@ namespace app0
                 NotifyPropertyChanged("Corre_points");
             }
         }
-
-        public List<DataPoint> Corre_list { 
+        public List<DataPoint> Corre_list
+        {
             get
             {
                 return corre_list;
@@ -599,7 +566,6 @@ namespace app0
                 NotifyPropertyChanged("Corre_list");
             }
         }
-
         public float A
         {
             get
@@ -612,7 +578,6 @@ namespace app0
                 NotifyPropertyChanged("A");
             }
         }
-
         public float B
         {
             get
@@ -625,13 +590,6 @@ namespace app0
                 NotifyPropertyChanged("B");
             }
         }
-
-
-
-
-
-
-
 
         //public string File_path { set; get; }
     }

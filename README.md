@@ -56,7 +56,7 @@ Press [here](https://github.com/Noamls123/FG-Application/blob/main/UML.jpeg) to 
 
 # Code Design and Architechture:
 
-For programming this app, **MVVM** architecture.
+For programming this app, **MVVM** architecture has been used.
 
 This App has three main parts that run it, each part with its own designated responsibilities- View, ViewModel and Model.
 The **Model**, as a client, interacts with The server (the Flight-Gear app) via TCP connection, and send data of csv and xml files.
@@ -65,6 +65,6 @@ Furthermore, When the data of the View changed by the user, it is send a command
 
 
 # Collaborators
-This program was developed by Shaked Arel, Ruth Lofsky, Hadassa Danesh and Noan Sery Levi.
+This program was developed by Shaked Arel, Ruth Lofsky, Hadassa Danesh and Noam Sery Levi.
 
 

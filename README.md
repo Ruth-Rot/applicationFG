@@ -15,15 +15,19 @@ Furthermore, When the data of the Views changed by the user, it send a command t
 * There is a list of all the flight attributes, the user can select one of them at a time, and then, three graphs that related to the attribute will show up.
 * MediaBar that allows the user variety of actions: change the speed of the video, stop, continue, go back to the beginning etc.  
 
+# Prerequisites for Developers
+- WPF
+- C#
+- C++
 
 # Required installation
 
 1) Using the .NET Framework to create a GUI App for FlightGear.
-2) FlightGear application version 3.6
-3) Visual Studio 2019
-4) install the plotting library for .NET named OxyPlot (OxyPlot.Wpf.2.0.0)
-5)  [OxyPlot](https://oxyplot.readthedocs.io/en/latest/getting-started/hello-wpf-xaml.html)
-6) **dll**
+2) FlightGear application version 3.6 [FG Simulator](https://www.flightgear.org/)
+3) Visual Studio 2019 
+4) install the plotting library for .NET named [OxyPlot](https://oxyplot.readthedocs.io/en/latest/getting-started/hello-wpf-xaml.html)
+5) **dll**
+
 
 # Compiling and Running
 

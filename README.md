@@ -46,6 +46,12 @@ Offered options to download the application:
 
  After opening the app, a MainWindow will show up. 
  The user needs to load xml and csv files (as you can see in the picture) and then, needs to press **start**.
+ if you would like to upload a Dll file you need to upload a csv file and a dll file.
+ To start the min circle dll please upload the file in this path: "\plugins\CsharpCircleDll\CsharpCircleDll\bin\Debug\CsharpCircleDll.dll"
+To start the regres dll please upload the file in this path: "\plugins\DllRe\Debug\DllRe.dll"
+note!
+We did not manage to finish the part that present the anomalies that comes back from our algorithms,
+we had a bug in the timeseries files that we didnt had time to fix.
 
 ![image](https://user-images.githubusercontent.com/73317511/114721566-b6308400-9d41-11eb-870a-721e75846763.png)
 
@@ -65,7 +71,7 @@ In addition, the Model notifies the relevant **ViewModel** when it's data change
 Furthermore, When the data of the View changed by the user, it is send a command to the relevant ViewModel, that send a command to the Model which reacts to the changed data accordingly. 
 
 # Explanation Video:
-
+Press [here](https://youtu.be/Y7CUQCnqSNw) to watch our video examples.
 # Collaborators
 This program was developed by Shaked Arel, Ruth Lofsky, Hadassa Danesh and Noam Sery Levi.
 

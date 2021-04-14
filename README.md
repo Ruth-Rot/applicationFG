@@ -7,9 +7,9 @@ The Model, as a client, interacts with The server (the Flight-Gear app) via TCP 
 In addition, the Model notifies the relevant ViewModel when it's data changed. Next, the ViewModel process the changed data and notifies the Views (all the UserControls which appear on the screen). The Views reacts to the changed data accordingly.
 Furthermore, When the data of the Views changed by the user, it send a command to the relevant ViewModel, that send a command to the Model which reacts to the changed data accordingly. 
 
+# Added Fetures
 
-
-
+* hgdf
 
 
 

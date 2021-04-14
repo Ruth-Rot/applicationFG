@@ -1,0 +1,6 @@
+﻿  SimpleAnomalyDetector.cpp
+C:\Users\משתמש1\source\repos\Dllcircle\Dllcircle\SimpleAnomalyDetector.cpp(11,17): warning C4305: '=': truncation from 'double' to 'float'
+  anomaly_detection_util.obj : /DEBUG:FASTLINK is not supported when managed code is present; restarting link with /DEBUG:FULL
+  anomaly_detection_util.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
+     Creating library C:\Users\?????1\source\repos\Dllcircle\Debug\Dllcircle.lib and object C:\Users\?????1\source\repos\Dllcircle\Debug\Dllcircle.exp
+  Dllcircle.vcxproj -> C:\Users\משתמש1\source\repos\Dllcircle\Debug\Dllcircle.dll

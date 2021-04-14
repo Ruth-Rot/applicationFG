@@ -36,6 +36,7 @@ In this app the user can explore the data of the flight, and find detections.
 # Compiling and Running
 
 Before connectiong, run the FlightGear Launcher and go to 'Additional Settings' and write: 
+
 --generic=socket,in,10,127.0.0.1,5400,tcp,playback_small
 --fdm=null
 

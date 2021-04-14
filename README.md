@@ -44,7 +44,8 @@ Offered options to download the application:
 - Use git on the termianl with the command: git clone https://github.com/Noamls123/FG-Application
 - Download the zip for this repository.
 
-After downloading and running the application, load xml and csv files in the MainWindow (as you can see in the picture) and then, press **start**.
+ After opening the app, a MainWindow will show up. 
+ The user needs to load xml and csv files (as you can see in the picture) and then, needs to press **start**.
 
 ![image](https://user-images.githubusercontent.com/73317511/114721566-b6308400-9d41-11eb-870a-721e75846763.png)
 

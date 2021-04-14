@@ -42,6 +42,7 @@ git clone https://github.com/Noamls123/FG-Application
 
 Build the project.
 
+![image](https://user-images.githubusercontent.com/73317511/114720942-1f63c780-9d41-11eb-8500-f0c0659bc2ff.png)
 
 
 # UML Chart:

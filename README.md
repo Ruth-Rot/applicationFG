@@ -21,8 +21,9 @@ Furthermore, When the data of the Views changed by the user, it send a command t
 1) Using the .NET Framework to create a GUI App for FlightGear.
 2) FlightGear application version 3.6
 3) Visual Studio 2019
-4) install the plotting library for .NET named OxyPlot (OxyPlot.Wpf.2.0.0) [OxyPlot] (https://oxyplot.readthedocs.io/en/latest/getting-started/hello-wpf-xaml.html)
-5) **dll**
+4) install the plotting library for .NET named OxyPlot (OxyPlot.Wpf.2.0.0)
+5)  [OxyPlot] (https://oxyplot.readthedocs.io/en/latest/getting-started/hello-wpf-xaml.html)
+6) **dll**
 
 # Compiling and Running
 

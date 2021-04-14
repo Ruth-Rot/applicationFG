@@ -41,4 +41,4 @@ Build the project.
 
 # UML
 
-[GitHub Logo](/images/logo.png)
+[UML](https://github.com/Noamls123/FG-Application/blob/main/UML.jpeg)

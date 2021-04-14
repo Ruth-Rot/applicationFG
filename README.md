@@ -9,7 +9,7 @@ Furthermore, When the data of the Views changed by the user, it send a command t
 
 
 
-The Model interacts with The server (the Flight-Gear app or server script) via TCP connection, continuously send and read data requests and notifies the relevant ViewModel when it's data changed. Next, the ViewModels process the changed data and notifies the Views about the changed data. the Views reacts to the changed data accordingly, the data flows both from and to the Model.
+
 
 
 

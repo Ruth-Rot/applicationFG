@@ -51,7 +51,7 @@ After downloading and runnimg the application, load xml and csv files in the Mai
 
 # UML Chart:
 
-You can press [here](https://github.com/Noamls123/FG-Application/blob/main/UML.jpeg) to get the UML of the main classes.
+Press [here](https://github.com/Noamls123/FG-Application/blob/main/UML.jpeg) to get the UML of the main classes.
 
 
 # Code Design and Architechture:

@@ -40,10 +40,9 @@ Before connecting, run the FlightGear Launcher and go to *Additional Settings* a
 --generic=socket,in,10,127.0.0.1,5400,tcp,playback_small
 --fdm=null
 
-Several offered options for download the application: 
+Offered options to download the application: 
 - Use git on the termianl with the command: git clone https://github.com/Noamls123/FG-Application
 - Download the zip for this repository.
-- Launch App0.exe
 
 After downloading and running the application, load xml and csv files in the MainWindow (as you can see in the picture) and then, press **start**.
 

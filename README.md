@@ -2,6 +2,19 @@
 
 # Brief explanation of the project:
 
+This application allows the user to see flight data on a simulator, and to explore it. 
+Flight data includes the speed of the plane, the direction, the height of the plane, and so on.
+the flow of the application:
+The user loads two data files to the app: 
+1) csv file that contains the values of each attribute at each point of time in the flight.
+2) xml file that contains the names of all the attributes that the user can check their values during the flight.
+After the user loads those files, the app will open a window that:
+- Shows the condition of every attribute of the flight in graphs.
+- Has a media bar that can run the flight forward, back, restart the flight video, end it and has a lot more features.
+- Has a visualization of the flight while it is running.
+In this app the user can explore the data of the flight, and find detections.
+
+
 
 # Added Fetures
 
@@ -15,7 +28,7 @@
 # Required installation and Preparations
 
 1) [FlightGear](https://www.flightgear.org/) application version 3.6 
-2 Move playback_small.xm to C:\Program Files\FlightGear 2020.3.6\data\Protocol.
+2 Move playback_small.xml to C:\Program Files\FlightGear 2020.3.6\data\Protocol.
 3) Using the .NET Framework to create a GUI App for FlightGear.
 4) Visual Studio 2019 
 5)install the plotting library for .NET named [OxyPlot](https://oxyplot.readthedocs.io/en/latest/getting-started/hello-wpf-xaml.html)
@@ -30,7 +43,7 @@ git clone https://github.com/Noamls123/FG-Application
 Build the project.
 
 
-# UML Chart and Design pattern
+# UML Chart:
 
 You can press [here](https://github.com/Noamls123/FG-Application/blob/main/UML.jpeg) to get the UML of the main classes.
 

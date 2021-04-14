@@ -42,3 +42,5 @@ Build the project.
 # UML
 
 [UML](https://github.com/Noamls123/FG-Application/blob/main/UML.jpeg)
+
+[exe](C:\Users\noam\source\repos\app0\app0\bin\Debug\app0.exe)

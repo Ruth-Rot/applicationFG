@@ -27,20 +27,24 @@ In this app the user can explore the data of the flight, and find detections.
 
 # Required installation and Preparations
 
-1) [FlightGear](https://www.flightgear.org/) application version 3.6 
+1) [FlightGear](https://www.flightgear.org/) application version 3.6.
 2) Move playback_small.xml to C:\Program Files\FlightGear 2020.3.6\data\Protocol.
 3) Using the .NET Framework to create a GUI App for FlightGear.
 4) Visual Studio 2019 
 5) install the plotting library for .NET named [OxyPlot](https://oxyplot.readthedocs.io/en/latest/getting-started/hello-wpf-xaml.html)
 
-
 # Compiling and Running
 
-Download the zip for this repository or use git on the termianl. The terminal command is:
+Before connectiong, run the FlightGear Launcher and go to 'Additional Settings' and write: 
+--generic=socket,in,10,127.0.0.1,5400,tcp,playback_small
+--fdm=null
 
-git clone https://github.com/Noamls123/FG-Application
+Several offered options for download the application: 
+- Use git on the termianl with the command: git clone https://github.com/Noamls123/FG-Application
+- Download the zip for this repository.
+- Launch App0.exe
 
-Build the project.
+After downloading and runnimg the application, load xml and csv files in the MainWindow (as you can see in the picture) and then, press **start**.
 
 ![image](https://user-images.githubusercontent.com/73317511/114721566-b6308400-9d41-11eb-870a-721e75846763.png)
 

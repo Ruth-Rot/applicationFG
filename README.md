@@ -35,7 +35,7 @@ In this app the user can explore the data of the flight, and find detections.
 
 # Compiling and Running
 
-Before connectiong, run the FlightGear Launcher and go to *Additional Settings* and write: 
+Before connecting, run the FlightGear Launcher and go to *Additional Settings* and write: 
 
 --generic=socket,in,10,127.0.0.1,5400,tcp,playback_small
 --fdm=null
@@ -45,7 +45,7 @@ Several offered options for download the application:
 - Download the zip for this repository.
 - Launch App0.exe
 
-After downloading and runnimg the application, load xml and csv files in the MainWindow (as you can see in the picture) and then, press **start**.
+After downloading and running the application, load xml and csv files in the MainWindow (as you can see in the picture) and then, press **start**.
 
 ![image](https://user-images.githubusercontent.com/73317511/114721566-b6308400-9d41-11eb-870a-721e75846763.png)
 

@@ -23,7 +23,7 @@ Furthermore, When the data of the Views changed by the user, it send a command t
 # Required installation
 
 1) Using the .NET Framework to create a GUI App for FlightGear.
-2) FlightGear application version 3.6 [FG Simulator](https://www.flightgear.org/)
+2) [FlightGear](https://www.flightgear.org/) application version 3.6 
 3) Visual Studio 2019 
 4) install the plotting library for .NET named [OxyPlot](https://oxyplot.readthedocs.io/en/latest/getting-started/hello-wpf-xaml.html)
 5) **dll**

@@ -16,7 +16,7 @@ In this app the user can explore the data of the flight, and find detections.
 
 
 
-# Added Fetures
+# Added Features
 
 * MainWindow screen that allows you to upload a csv and xml files that necessary for the flight simulator.
 * Main screen that contains joystick and sliders of throttle and rudder, that moves according to the movement of the airplane.

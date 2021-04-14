@@ -36,20 +36,3 @@ Download the zip for this repository or use git on the termianl. The terminal co
 git clone https://github.com/Noamls123/FG-Application
 
 Build the project.
-
-
-We provide a batch script to compile this project, you should use it! The batch file is called build_and_run and is added to the repository. To properly use this batch script you should download the repository content without changing any files location and have Visual Studio 2019 installed, just double click the batch script and you're good to go :) (note that build_and_run should reside in the same folder as the FlightSimulatorApp.zip you downloaded).
-
-
-
-
-
-
-
-
-Third main achievements:
-
-1)
-
-
-and special features that we have implemented:

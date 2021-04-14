@@ -28,7 +28,7 @@ In this app the user can explore the data of the flight, and find detections.
 # Required installation and Preparations
 
 1) [FlightGear](https://www.flightgear.org/) application version 3.6 
-2 Move playback_small.xml to C:\Program Files\FlightGear 2020.3.6\data\Protocol.
+2) Move playback_small.xml to C:\Program Files\FlightGear 2020.3.6\data\Protocol.
 3) Using the .NET Framework to create a GUI App for FlightGear.
 4) Visual Studio 2019 
 5)install the plotting library for .NET named [OxyPlot](https://oxyplot.readthedocs.io/en/latest/getting-started/hello-wpf-xaml.html)
@@ -61,7 +61,4 @@ Furthermore, When the data of the View changed by the user, it is send a command
 # Collaborators
 This program was developed by Shaked Arel, Ruth Lofsky, Hadassa Danesh and Noan Sery Levi.
 
-
-
-bhaihi
 

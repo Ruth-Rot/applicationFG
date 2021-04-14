@@ -36,3 +36,9 @@ Download the zip for this repository or use git on the termianl. The terminal co
 git clone https://github.com/Noamls123/FG-Application
 
 Build the project.
+
+
+
+# UML
+
+[GitHub Logo](/images/logo.png)

@@ -63,8 +63,8 @@ The **Model**, as a client, interacts with The server (the Flight-Gear app) via 
 In addition, the Model notifies the relevant **ViewModel** when it's data changed. Next, the ViewModel process the changed data and notifies the **Views** (all the UserControls which appear on the screen) by using data binding mechanism of wpf. The Views reacts to the changed data accordingly.
 Furthermore, When the data of the View changed by the user, it is send a command to the relevant ViewModel, that send a command to the Model which reacts to the changed data accordingly. 
 
+# Explanation Video:
 
 # Collaborators
 This program was developed by Shaked Arel, Ruth Lofsky, Hadassa Danesh and Noam Sery Levi.
-
 

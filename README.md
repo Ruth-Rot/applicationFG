@@ -39,8 +39,12 @@ Build the project.
 
 
 
-# UML
+# UML Chart and Design pattern
 
-[UML](https://github.com/Noamls123/FG-Application/blob/main/UML.jpeg)
+You can press [here](https://github.com/Noamls123/FG-Application/blob/main/UML.jpeg) to get the UML of the main classes.
+The design pattern we used is **MVVM**:
+* Model : 
+
+
 
 

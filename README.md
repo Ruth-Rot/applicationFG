@@ -47,7 +47,7 @@ Offered options to download the application:
  After opening the app, a MainWindow will show up. 
  The user needs to load xml and csv files (as you can see in the picture) and then, needs to press **start**.
  
- ![image](https://user-images.githubusercontent.com/73317511/114721566-b6308400-9d41-11eb-870a-721e75846763.png)
+ ![image](web screen.png)
  
  # Dll explanation
  if you would like to load a Dll you need to upload a csv file and a dll file.

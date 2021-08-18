@@ -12,20 +12,62 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
+
 
 namespace app0
 {
     /// <summary>
     /// Interaction logic for View.xaml
     /// </summary>
-    public partial class View : Page
+    public partial class View : Window
     {
-        ViewModel vm;
-        public View()
+        private ViewModel vm;
+        private String filePath;
+        private String xmlFile;
+
+
+        public View(String csv, String xml)
         {
             InitializeComponent();
-            vm = new ViewModel(new Model(""));
+            filePath = csv;
+            xmlFile = xml;
+            ViewModel vm = new ViewModel(new Model(csv, xml));
+            MediaBar media = new MediaBar(vm);
+            Joystick joy = new Joystick(vm);
+            measurments meas = new measurments(vm);
+            Graph g = new Graph(vm);
+            Graph_Ilustraion i = new Graph_Ilustraion(vm);
+            grd_panel.Children.Add(media);
+            joystick_panel.Children.Add(joy);
+            measurments_panel.Children.Add(meas);
+            graphs.Children.Add(i);
+            graph_panel.Children.Add(g);
             DataContext = vm;
+        }
+
+        private void OpenFile_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                //NavigationService.Navigate(home);
+                this.filePath = System.IO.Path.GetFullPath(openFileDialog.FileName);
+
+                vm = new ViewModel(new Model(filePath, xmlFile));
+                vm.VM_File_path = filePath;
+                DataContext = vm;
+
+
+                //vm = new ViewModel(new Model(filePath));
+                //DataContext = vm;
+            }
+        }
+
+
+        public string Filepath
+        {
+            get { return filePath; }
         }
     }
 }

@@ -1,9 +1,114 @@
-﻿<NavigationWindow x:Class="app0.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:app0"
-        mc:Ignorable="d"
-        Title="Flight Simulator" Width="880" Height="580" ShowsNavigationUI="False">
-</NavigationWindow>
+﻿<Window
+    x:Class="app0.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:app0"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="OpenFile"
+    d:DesignHeight="450"
+    d:DesignWidth="650"
+    mc:Ignorable="d">
+    <Window.Background>
+        <ImageBrush ImageSource="airPlane.jpg" />
+    </Window.Background>
+
+
+    <Grid
+        Width="500"
+        Height="400"
+        Margin="50,-1,50,0"
+        VerticalAlignment="Top">
+        <Grid.Background>
+            <ImageBrush />
+        </Grid.Background>
+        <Button
+            x:Name="openFile"
+            Height="37"
+            Margin="464,95,-18,268"
+            Background="#FF2E5E92"
+            Click="OpenFile_Click"
+            Content="..."
+            FontFamily="Arial Rounded MT Bold"
+            FontSize="24"
+            Foreground="#FFFCF8F8" />
+        <Button
+            x:Name="getXml"
+            Height="37"
+            Margin="464,42,-18,321"
+            Background="#FF2E5E92"
+            Click="OpenXML_Click"
+            Content="..."
+            FontFamily="Arial Rounded MT Bold"
+            FontSize="24"
+            Foreground="#FFFCF8F8" />
+        <Button
+            x:Name="start"
+            Width="90"
+            Height="50"
+            Margin="411,322,-1,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Click="start_Click"
+            Content="start"
+            FontFamily="Arial Rounded MT Bold"
+            FontSize="24"
+            RenderTransformOrigin="0.046,0.389" />
+        <Label
+            x:Name="showCsv"
+            Width="439"
+            Height="36"
+            Margin="-21,96,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}"
+            Content="please upload a CSV file"
+            FontFamily="Arial Rounded MT Bold"
+            FontSize="24" />
+        <Label
+            x:Name="showXml"
+            Width="439"
+            Height="37"
+            Margin="-21,42,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}"
+            Content="please upload an XML file"
+            FontFamily="Arial Rounded MT Bold"
+            FontSize="24" />
+        <TextBox
+            x:Name="Shaked"
+            Height="21"
+            Margin="-71,349,457,0"
+            VerticalAlignment="Top"
+            Background="{x:Null}"
+            BorderBrush="{x:Null}"
+            FontFamily="Arial Rounded MT Bold"
+            Text="Shaked Arel" />
+        <TextBox
+            x:Name="Noam"
+            Margin="-70,402,457,-20"
+            Background="{x:Null}"
+            BorderBrush="{x:Null}"
+            FontFamily="Arial Rounded MT Bold"
+            Text="Noam Sery Levi"
+            TextChanged="Noam_TextChanged" />
+        <TextBox
+            x:Name="Hadassa"
+            Margin="-71,384,457,-4"
+            Background="Transparent"
+            BorderBrush="{x:Null}"
+            FontFamily="Arial Rounded MT Bold"
+            Text="Hadassa Danesh" />
+        <TextBox
+            x:Name="Rutie"
+            Margin="-71,367,456,14"
+            Background="Transparent"
+            BorderBrush="{x:Null}"
+            FontFamily="Arial Rounded MT Bold"
+            Text="Ruth Lofsky"
+            TextChanged="Rutie_TextChanged" />
+    </Grid>
+
+</Window>
+

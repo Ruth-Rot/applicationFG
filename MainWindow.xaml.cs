@@ -18,52 +18,79 @@ using Microsoft.Win32;
 
 
 
+
 namespace app0
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : NavigationWindow
+    public partial class MainWindow:Window
     {
-        //LoadPath loadPath;
-        Panel panel;
+        public String filePath;
+        public String fileXml;
+        private Boolean xml;
+        private Boolean csv;
 
 
+        //View view
+        //
         public MainWindow()
         {
+            //Console.WriteLine("hiii");
             InitializeComponent();
-            //loadPath = new LoadPath();
-            //Navigate(loadPath);
-            //panel = new Panel();
+            xml = false;
+            csv = false;
+
+            // view = new View();
+            //Navigate(view);
+
+
+        }
+        private void OpenFile_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                filePath = System.IO.Path.GetFullPath(openFileDialog.FileName);
+                showCsv.Content = filePath;
+                csv = true;
+
+            }
+        }
+        private void OpenXML_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                fileXml = System.IO.Path.GetFullPath(openFileDialog.FileName);
+                showXml.Content = fileXml;
+                xml = true;
+            }
+        }
+        private void start_Click(object sender, RoutedEventArgs e)
+        {
+            if (csv && xml)
+            {
+                this.Hide();
+
+                View view = new View(filePath, fileXml);
+                view.ShowDialog();
+                this.Show();
+                
+            }
+
         }
 
-
-        /* private void btnOpenFile_Click(object sender, RoutedEventArgs e)
-         {
-             OpenFileDialog openFileDialog = new OpenFileDialog();
-             if (openFileDialog.ShowDialog() == true)
-             {
-                 filePath = System.IO.Path.GetFullPath(openFileDialog.FileName);
-             }
-             //this.Close();
-         }*/
-
-
-        /*public void ConnectFg()
+        private void Rutie_TextChanged(object sender, TextChangedEventArgs e)
         {
 
-            var client = new TcpClient("localhost", 5400);
-            NetworkStream ns = client.GetStream();
-            var file = new System.IO.StreamReader(@"C:\Users\noam\Desktop\reg_flight.csv");
-            string line;
-            while ((line = file.ReadLine()) != null)
-            {
-                line += "\r\n";
-                Console.WriteLine(line);
-                ns.Write(System.Text.Encoding.ASCII.GetBytes(line), 0, System.Text.Encoding.ASCII.GetBytes(line).Length);
-                ns.Flush();
-                Thread.Sleep(100);
-            }
-        }*/
+        }
+
+        private void Noam_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }
+
+

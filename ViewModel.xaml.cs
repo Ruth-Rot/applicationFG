@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OxyPlot;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -21,12 +22,13 @@ namespace app0
     /// </summary>
     public partial class ViewModel : INotifyPropertyChanged
     {
-        private Model model;
+        private IModel model;
+
         public ViewModel(Model m)
         {
             this.model = m;
             InitializeComponent();
-            model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e) 
+            model.PropertyChanged += delegate (Object sender, PropertyChangedEventArgs e)
             {
                 NotifyPropertyChanged("VM_" + e.PropertyName);
             };
@@ -35,11 +37,34 @@ namespace app0
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propName)
         {
-            if (this.PropertyChanged != null)
-                this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
+            // if (this.PropertyChanged != null)
+            //   this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
+        }
+        public List<DataPoint> VM_GraphList
+        {
+            get
+            {
+                return model.GraphList;
+            }
+            set
+            {
+                model.GraphList = value;
+            }
+        }
+        public String VM_Selection
+        {
+            get
+            {
+                return model.Selection;
+            }
+            set
+            {
+                model.Selection = value;
+            }
         }
 
-        public double VM_Throttle
+        public float VM_Throttle
         {
             get
             {
@@ -51,7 +76,7 @@ namespace app0
             }
         }
 
-        public double VM_Rudder
+        public float VM_Rudder
         {
             get
             {
@@ -63,7 +88,7 @@ namespace app0
             }
         }
 
-        public double VM_Elevator
+        public float VM_Elevator
         {
             get
             {
@@ -75,7 +100,7 @@ namespace app0
             }
         }
 
-        public double VM_Ailrone
+        public float VM_Aileron
         {
             get
             {
@@ -87,41 +112,182 @@ namespace app0
             }
         }
 
-        public void VM_ConnectFg(string path)
+
+        public int VM_Current_line
         {
-            model.ConnectFg(path);
+            get
+            {
+                return model.Current_line;
+            }
+            set
+            {
+                model.Current_line = value;
+            }
         }
 
-        public bool VM_Stop
+        public int VM_Num_of_lines
         {
+            get
+            {
+                return model.Num_of_lines;
+            }
+            set
+            {
+                model.Num_of_lines = value;
+            }
+        }
+
+        public int VM_Sleep
+        {
+            get
+            {
+                return model.Sleep;
+            }
+            set
+            {
+                model.Sleep = value;
+            }
+        }
+
+
+        public Boolean VM_Stop
+        {
+            get
+            {
+                return model.Stop;
+            }
             set
             {
                 model.Stop = value;
             }
         }
 
-        /*public void VM_Start()
+        public List<String> VM_XmlNames
         {
-            model.Start();
+            get
+            {
+                return model.XmlNames;
+            }
         }
 
-        public void VM_Stop()
+        public float VM_Altimeter
         {
-            model.Stop();
-        }*/
-
-        public void VM_Continue()
+            get
+            {
+                return model.Altimeter;
+            }
+        }
+        public float VM_AirSpeed
         {
-            model.Continue();
+            get
+            {
+                return model.AirSpeed;
+            }
+        }
+        public float VM_Pitch
+        {
+            get
+            {
+                return model.Pitch;
+            }
+        }
+        public float VM_Roll
+        {
+            get
+            {
+                return model.Roll;
+            }
+        }
+        public float VM_Yaw
+        {
+            get
+            {
+                return model.Yaw;
+            }
+        }
+        public float VM_Heading
+        {
+            get
+            {
+                return model.Heading;
+            }
         }
 
-        public void VM_Back()
+        public string VM_TimePassed
         {
-            model.Back();
+            get
+            {
+                return model.TimePassed;
+            }
+            set
+            {
+                model.TimePassed = value;
+            }
+        }
+
+        public string VM_Correlated_att
+        {
+            get
+            {
+                return model.Correlated_att;
+            }
+            set
+            {
+                model.Correlated_att = value;
+            }
+        }
+
+        public List<DataPoint> VM_Corre_points
+        {
+            get
+            {
+                return model.Corre_points;
+            }
+            set
+            {
+                model.Corre_points = value;
+            }
         }
 
 
+        public List<DataPoint> VM_Corre_list
+        {
+            get
+            {
+                return model.Corre_list;
+            }
+            set
+            {
+                model.Corre_list = value;
+            }
+        }
+
+        public float VM_A
+        {
+            get
+            {
+                return model.A;
+            }
+            set
+            {
+                model.A = value;
+            }
+        }
+
+        public float VM_B
+        {
+            get
+            {
+                return model.B;
+            }
+            set
+            {
+                model.B = value;
+            }
+        }
+
+
+        public string VM_File_path { get; internal set; }
     }
 }
-    
 

@@ -13,42 +13,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ass1
+namespace app0
 {
     /// <summary>
     /// Interaction logic for Joystick.xaml
     /// </summary>
     public partial class Joystick : UserControl
     {
-        public Joystick()
+        public Joystick(ViewModel vm)
         {
             InitializeComponent();
+            DataContext = vm;
         }
-
-        void Move(Double x,Double y)
-        {
-
-        }
-
-        void up()
-        {
-            knobPosition.Y += 20;
-        }
-
-        void Down()
-        {
-            knobPosition.Y += 20;
-        }
-
-        void Left()
-        {
-            knobPosition.X += 20;
-        }
-
-        void Right()
-        {
-            knobPosition.X += 20;
-        }
-
     }
 }
